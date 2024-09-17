@@ -2,7 +2,7 @@
 
 ![Cerebro digital](https://github.com/user-attachments/assets/992328c7-025b-4c96-bc40-d112ef7a2909)
 
-<p align="left"><img src="https://img.shields.io/badge/Estado-En_desarrollo-red"/></p>
+<p align="left">🏗️<img src="https://img.shields.io/badge/Estado-En_desarrollo-red"/>🏗️</p>
 
 <h3><u>Índice</u></h3>
 
@@ -20,3 +20,10 @@
 <h3>Descripción del proyecto</h3>
 <hr/>
 <p>Este proyecto consiste en una aplicación que trata de meter recordatorios, alarmas, etc... para evitar la posibilidad de olvidar algo importante, o de ir a un sitio a x hora, <b>todo en una misma app</b>.</p>
+<br/>
+<h3><u>Funciones del proyecto</u></h3>
+<hr/>
+<ul>
+  <li>Función 1: Recordatorios con opción de poner día, hora...</li>
+  <li>Función 2: Alarma.</li>
+</ul>
