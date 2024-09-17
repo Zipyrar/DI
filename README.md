@@ -1,2 +1,5 @@
 <h1 align="center">Memorias digitales</h1>
-![Digital brain](https://github.com/user-attachments/assets/5e847e48-39eb-4ea0-8d16-83265e7a8fa1)
+
+![Cerebro digital](https://github.com/user-attachments/assets/992328c7-025b-4c96-bc40-d112ef7a2909)
+
+<p align="left"><img src="https://img.shields.io/badge/En_desarrollo-red"/></p>
