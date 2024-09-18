@@ -21,9 +21,14 @@
 <hr/>
 <p>Este proyecto consiste en una aplicación que trata de meter recordatorios, alarmas, etc... para evitar la posibilidad de olvidar algo importante, o de ir a un sitio a x hora, <b>todo en una misma app</b>.</p>
 <br/>
-<h3><u>Funciones del proyecto</u></h3>
+<h3>⚒️<u>Funciones del proyecto</u>🛠️</h3>
 <hr/>
 <ul>
   <li>Función 1: Recordatorios con opción de poner día, hora...</li>
   <li>Función 2: Alarma.</li>
 </ul>
+<br/>
+<h3>📁<u>Acceso</u>📂</h3>
+<hr/>
+<p>Descarga el siguiente enlace y ejecuta su acceso directo:</p>
+<p></p>
