@@ -31,7 +31,7 @@
 <h3>📁<u>Acceso</u>📂</h3>
 <hr/>
 <p>Descarga el siguiente enlace y ejecuta su acceso directo:</p>
-<p></p>
+<p>https://drive.google.com/file/d/1mIkzkpW2gv6i3Rw7bN0Ln4YHjkhzR8pO/view?usp=drive_link</p>
 <br/>
 <h3><u>Tecnologías usadas</u></h3>
 <hr/>
