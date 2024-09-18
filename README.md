@@ -32,3 +32,10 @@
 <hr/>
 <p>Descarga el siguiente enlace y ejecuta su acceso directo:</p>
 <p></p>
+<br/>
+<h3><u>Tecnologías usadas</u></h3>
+<hr/>
+<ul>
+  <li>JavaScript</li>
+  <li>Python</li>
+</ul>
