@@ -39,3 +39,15 @@
   <li>JavaScript</li>
   <li>Python</li>
 </ul>
+<br/>
+<h3><u>Colaboradores</u></h3>
+<hr/>
+<p>Doy mis agradecimientos a Carlos Méndez por colaborar en este proyecto.</p>
+<br/>
+<h3>🤵<u>Desarrollador</u></h3>
+<hr/>
+
+<br/>
+<h3><u>Licencia</u></h3>
+<hr/>
+<p></p>
