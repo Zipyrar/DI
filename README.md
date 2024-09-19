@@ -30,7 +30,7 @@
 <br/>
 <h3>📁<u>Acceso</u>📂</h3>
 <hr/>
-<p>Descarga el siguiente enlace y ejecuta su acceso directo:</p>
+<p>Pincha en el siguiente enlace, dale al icono de descarga, y ejecuta su acceso directo:</p>
 <p>https://drive.google.com/file/d/1mIkzkpW2gv6i3Rw7bN0Ln4YHjkhzR8pO/view?usp=drive_link</p>
 <br/>
 <h3><u>Tecnologías usadas</u></h3>
@@ -46,8 +46,8 @@
 <br/>
 <h3>🤵<u>Desarrollador</u></h3>
 <hr/>
-
+<p><img src="https://github.com/user-attachments/assets/d02d9333-4b01-4801-ba56-fa7795e27da9" widht="300" height="300"/><br/><sub>Alonso García Castiñeira</sub></p>
 <br/>
 <h3><u>Licencia</u></h3>
 <hr/>
-<p></p>
+<p>Memoria Digital is <a href="https://opensource.org/license/mit/">MIT license.</a></p>
