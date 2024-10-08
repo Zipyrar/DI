@@ -1,13 +1,13 @@
-def suma (a, b):
+def suma(a, b):
     return a + b
 
-def resta (a, b):
+def resta(a, b):
     return a - b
 
-def multi (a, b):
+def multi(a, b):
     return a * b
 
-def divi (a, b):
+def divi(a, b):
     try:
         return a / b
     #Con esta excepción, se comprueba que no se divida entre 0.
