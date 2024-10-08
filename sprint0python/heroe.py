@@ -39,7 +39,7 @@ class Heroe:
         print(f"{self.nomb} se defiende. Defensa aumentada temporalmente a {self.def_temporal}")
     
     def reset_defensa(self):
-        #Gracias al atributo def. temporal, se controla vuelva a la normalidad.
+        #Gracias al atributo def. temporal, se controla que vuelva a la normalidad.
         self.def_temporal = self.defensa
         
         print(f"La defensa de {self.nomb} ha vuelto a la normalidad.")
