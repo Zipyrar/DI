@@ -8,7 +8,7 @@ while True: #Controla si se sigue haciendo el programa principal.
         print("No se introdujo un número.")
         continue #Vuelve al principio.
     
-    while True:
+    while True: #Segundo bucle. Necesario para cuando se quiera realizar más operaciones con los mismos números.
         print("""Opciones a elegir:
           1) Sumar.
           2) Restar.
@@ -17,7 +17,7 @@ while True: #Controla si se sigue haciendo el programa principal.
           5) Salir.""")
     
         try:
-            opc = int(input("Introduzca un número de opción: ").strip())
+            opc = int(input("Introduzca un número de opción: ").strip()) #El .strip() evita los espacios en blanco.
         except ValueError:
             print("No se introdujo un número.")
             continue #Vuelve al principio.
@@ -39,7 +39,7 @@ while True: #Controla si se sigue haciendo el programa principal.
                     
             print(f"El resultado es {res}")
             
-            while True:
+            while True: #El tercer bucle sirve para que, si no se pone 's' o 'n', vuelva a preguntar.
                 otro = input("¿Deseas realizar otra operación (s/n)? ").strip().lower() 
                 #Asegura que acepte una s o una n, independientemente de que esté en mayúscula.
         

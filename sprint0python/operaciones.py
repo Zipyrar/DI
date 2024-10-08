@@ -10,5 +10,6 @@ def multi (a, b):
 def divi (a, b):
     try:
         return a / b
+    #Con esta excepción, se comprueba que no se divida entre 0.
     except ZeroDivisionError:
         return "No se puede dividir entre 0."
