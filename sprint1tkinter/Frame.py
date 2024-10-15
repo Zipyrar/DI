@@ -1,7 +1,7 @@
 import tkinter as tk
 
 w = tk.Tk()
-w.title("Canvas")
+w.title("Frame")
 w.geometry("500x500")
 
 fr_sup = tk.Frame(w, bg="lightblue")
