@@ -1,12 +1,15 @@
 import tkinter as tk
 
+#Crea la ventana principal.
 w = tk.Tk()
 w.title("Frame")
 w.geometry("500x500")
 
+#Crea un Frame.
 fr_sup = tk.Frame(w, bg="lightblue")
 fr_sup.pack(padx=50, pady=20, fill="both")
 
+#Añade al Frame.
 et1_sup = tk.Label(fr_sup, text="Buenas tardes.", bg="lightblue")
 et1_sup.pack(pady=5)
 et2_sup = tk.Label(fr_sup, text="Me estoy muriendo de cansancio.", bg="lightblue")
@@ -24,7 +27,7 @@ def borra():
     borra = cuadro.get()
     dialogo.config(text="", bg="lightgrey")
     
-
+#Crea otro Frame.
 fr_inf = tk.Frame(w, bg="lightgrey")
 fr_inf.pack(padx=50, pady=20, fill="both")
 
@@ -35,4 +38,5 @@ dialogo.pack(pady=5)
 bot2 = tk.Button(fr_inf, text="Borrar estado", bg="lightgrey", command=borra)
 bot2.pack(pady=5)
 
+#Ejecuta el bucle principal.
 w.mainloop()
