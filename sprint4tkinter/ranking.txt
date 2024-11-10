@@ -1,0 +1,4 @@
+Nombre: Manolo
+Dificultad: Normal
+Movimientos: 4
+Fecha: 01/07/2023  10:20:30
