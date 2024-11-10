@@ -49,15 +49,15 @@ class GameView:
         self.labels.clear()
 
 class MainMenu:
-    def __init__(self, root, start_game_callback, show_stats_callback, quit_callback):
+    def __init__(self, root, show_difficulty_selection_callback, show_stats_callback, quit_callback):
         self.window = root
         self.window.title("Juego de memoria")
         
-        self.start_game_callback = start_game_callback 
+        self.show_difficulty_selection_callback = show_difficulty_selection_callback
         self.show_stats_callback = show_stats_callback
         self.quit_callback = quit_callback
         
-        self.play = tk.Button(root, text="Jugar partida", command=self.start_game_callback)
+        self.play = tk.Button(root, text="Jugar partida", command=self.show_difficulty_selection_callback)
         self.play.pack(pady=20)
         self.stats = tk.Button(root, text="Estadísticas", command=self.show_stats_callback)
         self.stats.pack(pady=20)
@@ -71,8 +71,7 @@ class MainMenu:
         if not player_name:
             player_name = "Jugador"  #Valor predeterminado si no se ingresa un nombre.
 
-        #Llamar al callback (GameController) con los parámetros obtenidos.
-        self.start_game_callback(player_name)
+        return player_name
     
     def show_stats(self, stats):
         stats_root = Toplevel()

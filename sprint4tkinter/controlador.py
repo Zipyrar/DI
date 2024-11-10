@@ -12,23 +12,23 @@ class GameController:
         self.timer_started = False
         self.player_name = ""
         
-        self.menu = MainMenu(root, self.start_game, self.show_stats, self.return_to_main_menu)
-        
-    def ask_player_name(self, player_name):
-        # Asignamos el nombre del jugador recibido de la vista
-        self.player_name = self.menu.ask_player_name()
-        self.show_difficulty_selection()
+        self.menu = MainMenu(root, self.show_difficulty_selection, self.show_stats, self.return_to_main_menu)
 
     def show_difficulty_selection(self):
-        # Pedir la dificultad
-        difficulty = simpledialog.askstring("Dificultad", "Selecciona la dificultad (fácil, medio, difícil):")
-
-        if difficulty in ["fácil", "medio", "difícil"]:
-            # Llamar al callback con la dificultad y el nombre del jugador
-            self.start_game(difficulty)
+        #Solicitar la dificultad al jugador.
+        difficulty = simpledialog.askstring("Dificultad", "Selecciona la dificultad (fácil, normal, difícil):")
+        
+        if difficulty in ['fácil', 'normal', 'difícil']:
+            #Guardar el nombre del jugador después de seleccionar la dificultad.
+            self.player_name = self.menu.ask_player_name()
+            
+            if self.player_name:
+                #Llamar a start_game con la dificultad seleccionada.
+                self.start_game(difficulty)
+            else:
+                messagebox.showerror("Error", "Nombre del jugador no introducido.")
         else:
-            # Si la dificultad no es válida
-            simpledialog.messagebox.showerror("Error", "Selección de dificultad inválida.")
+            messagebox.showerror("Error", "Debe seleccionar una dificultad.")
 
     def start_game(self, difficulty):
         #Este es el método que maneja la lógica de inicio del juego.
@@ -39,7 +39,7 @@ class GameController:
             self.model = GameModel(difficulty, self.player_name)
 
             # Cargar las imágenes
-            self.model.load_images()
+            self.model._load_images()
 
             # Verificar si las imágenes se cargaron correctamente
             self.check_images_loaded()
