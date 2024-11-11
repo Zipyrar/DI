@@ -21,8 +21,8 @@ class GameView:
                 label.bind("<Button-1>", lambda e, r=row, c=col: self.on_card_click_callback((r, c)))
                 self.labels[(row, col)] = label
                 
-        self.move_label = tk.Label(self.window, text="Movimientos: 0")
-        self.move_label.grid(row=model.board_size, column=0, columnspan=model.board_size // 2)
+        self.moves_label = tk.Label(self.window, text="Movimientos: 0")
+        self.moves_label.grid(row=model.board_size, column=0, columnspan=model.board_size // 2)
 
         self.time_label = tk.Label(self.window, text="Tiempo: 0")
         self.time_label.grid(row=model.board_size, column=model.board_size // 2, columnspan=model.board_size // 2)
@@ -38,10 +38,11 @@ class GameView:
             self.labels[pos2].config(image="", text="?")
         
     def update_move_count(self, moves):
-        self.move_label.config(f"Movimientos: {moves}")
+        self.moves_label.config(text=f"Movimientos: {moves}")
         
     def update_time(self, time):
-        self.time_label.config(f"Tiempo: {time}")
+        if self.time_label and str(self.time_label) in str(self.time_label.master):
+            self.time_label.config(text=f"Tiempo: {time}")
         
     def destroy(self):
         if self.window:

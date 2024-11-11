@@ -11,19 +11,20 @@ class GameController:
         self.selected = []
         self.timer_started = False
         self.player_name = ""
+        self.current_time = 0
         
         self.menu = MainMenu(root, self.show_difficulty_selection, self.show_stats, self.return_to_main_menu)
 
     def show_difficulty_selection(self):
-        #Solicitar la dificultad al jugador.
+        # Solicitar la dificultad al jugador.
         difficulty = simpledialog.askstring("Dificultad", "Selecciona la dificultad (fácil, normal, difícil):")
         
         if difficulty in ['fácil', 'normal', 'difícil']:
-            #Guardar el nombre del jugador después de seleccionar la dificultad.
+            # Guardar el nombre del jugador después de seleccionar la dificultad.
             self.player_name = self.menu.ask_player_name()
             
             if self.player_name:
-                #Llamar a start_game con la dificultad seleccionada.
+                # Llamar a start_game con la dificultad seleccionada.
                 self.start_game(difficulty)
             else:
                 messagebox.showerror("Error", "Nombre del jugador no introducido.")
@@ -31,12 +32,15 @@ class GameController:
             messagebox.showerror("Error", "Debe seleccionar una dificultad.")
 
     def start_game(self, difficulty):
-        #Este es el método que maneja la lógica de inicio del juego.
+        # Este es el método que maneja la lógica de inicio del juego.
         self.show_loading_window("Cargando tablero...")
 
         if self.player_name and difficulty:
             # Crear la instancia de GameModel con la dificultad y nombre del jugador
             self.model = GameModel(difficulty, self.player_name)
+            
+            # Inicializar el temporizador
+            self.model.start_timer()
 
             # Cargar las imágenes
             self.model._load_images()
@@ -46,13 +50,13 @@ class GameController:
         else:
             messagebox.showerror("Error", "El nombre del jugador o la dificultad no son válidos.")
             
-        
     def show_loading_window(self, message):
         self.loading_root = Toplevel(self.root)
         self.loading_root.title("Pantalla de carga")
         label = tk.Label(self.loading_root, text=message)
-        label.pack()
-        self.loading_root.grab_set()
+        label.pack(expand=True)
+        self.loading_root.grab_set()  #Asegura el bloqueo de la interacción con otras ventanas.
+        self.root.update_idletasks()  #Refresca la interfaz.
     
     def check_images_loaded(self):
         if self.model.images_are_loaded():
@@ -66,30 +70,36 @@ class GameController:
         if not self.timer_started:
             self.timer_started = True
             self.update_time()
-        self.selected.append(pos)
 
-        #Añadir posición a la lista seleccionada y actualizar la vista.
+        # Añadir posición a la lista seleccionada y actualizar la vista.
         if pos not in self.selected:
             self.selected.append(pos)
-            self.game_view.update_board(pos, self.model.get_image(pos))
+            row, col = pos
+            image = self.model.images[self.model.board[row][col]]  # Accedemos directamente a las imágenes del modelo
+            self.game_view.update_board(pos, image)
 
         if len(self.selected) == 2:
-            #Añade un pequeño retraso para mostrar la segunda carta.
+            # Añade un pequeño retraso para mostrar la segunda carta.
             self.root.after(1000, self.handle_card_selection)  
             
     def handle_card_selection(self):
-        pos1, pos2 = self.selected
-        
-        if self.model.check_match(pos1, pos2):
-            self.game_view.update_board(pos1, self.model.get_image(pos1))
-            self.game_view.update_board(pos2, self.model.get_image(pos2))
-        else:
-            #Pausa de 1 segundo antes de ocultar las cartas.
-            time.sleep(1)
-            self.game_view.reset_cards(pos1, pos2)
+        if len(self.selected) == 2:
+            pos1, pos2 = self.selected
+            row1, col1 = pos1
+            row2, col2 = pos2
+            image1 = self.model.images[self.model.board[row1][col1]]
+            image2 = self.model.images[self.model.board[row2][col2]]
             
-        self.selected.clear()
-        self.update_move_count(len(self.selected))
+            if self.model.check_match(pos1, pos2):
+                self.game_view.update_board(pos1, image1)
+                self.game_view.update_board(pos2, image2)
+            else:
+                # Pausa de 1 segundo antes de ocultar las cartas.
+                self.root.after(1000, lambda: self.game_view.reset_cards(pos1, pos2))
+                
+            # Limpiar la lista de seleccionados después de procesar.
+            self.selected.clear()
+        self.update_move_count(self.model.moves)
 
         if self.model.is_game_complete():
             self.check_game_complete()
@@ -104,7 +114,7 @@ class GameController:
 
     def show_stats(self):
         if self.model:
-            stats = self.model.load_scores()  # Ahora cargamos los puntajes
+            stats = self.model.load_scores()  # Ahora cargamos los puntajes.
             stats_root = tk.Toplevel(self.root)
             stats_root.title("Estadísticas")
             for level, entries in stats.items():
