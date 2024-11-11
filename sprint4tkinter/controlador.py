@@ -2,68 +2,76 @@ import tkinter as tk
 from tkinter import messagebox, simpledialog, Toplevel, Label
 from modelo import GameModel
 from vista import MainMenu, GameView
+import threading
 import time
 
 class GameController:
-    def __init__(self, root):
+    def __init__(self, root, model, menu, game_view):
         self.root = root
-        self.model = None
         self.selected = []
         self.timer_started = False
         self.player_name = ""
         self.current_time = 0
+        self.model = model
+        self.menu = menu
+        self.game_view = game_view
+        self.game_window = None 
         
-        self.menu = MainMenu(root, self.show_difficulty_selection, self.show_stats, self.return_to_main_menu)
+        self.menu = MainMenu(root, self.show_difficulty_selection, self.show_stats, self.quit_application)
 
     def show_difficulty_selection(self):
-        # Solicitar la dificultad al jugador.
         difficulty = simpledialog.askstring("Dificultad", "Selecciona la dificultad (fácil, normal, difícil):")
         
         if difficulty in ['fácil', 'normal', 'difícil']:
-            # Guardar el nombre del jugador después de seleccionar la dificultad.
             self.player_name = self.menu.ask_player_name()
             
             if self.player_name:
-                # Llamar a start_game con la dificultad seleccionada.
-                self.start_game(difficulty)
+                threading.Thread(target=self.start_game, args=(difficulty,), daemon=True).start()
             else:
                 messagebox.showerror("Error", "Nombre del jugador no introducido.")
         else:
             messagebox.showerror("Error", "Debe seleccionar una dificultad.")
 
     def start_game(self, difficulty):
-        # Este es el método que maneja la lógica de inicio del juego.
-        self.show_loading_window("Cargando tablero...")
+        if self.game_window is None:
+            self.show_loading_window("Cargando tablero...")
 
-        if self.player_name and difficulty:
-            # Crear la instancia de GameModel con la dificultad y nombre del jugador
-            self.model = GameModel(difficulty, self.player_name)
-            
-            # Inicializar el temporizador
-            self.model.start_timer()
-
-            # Cargar las imágenes
-            self.model._load_images()
-
-            # Verificar si las imágenes se cargaron correctamente
-            self.check_images_loaded()
+            if self.player_name and difficulty:
+                self.model = GameModel(difficulty, self.player_name)
+                self.model.size = 100
+                self.model.start_timer()
+                self.update_time()
+                threading.Thread(target=self.model._load_images, daemon=True).start() 
+                self.model.start_timer()
+                self.check_images_loaded()
+            else:
+                messagebox.showerror("Error", "El nombre del jugador o la dificultad no son válidos.")
         else:
-            messagebox.showerror("Error", "El nombre del jugador o la dificultad no son válidos.")
+            print("El tablero ya está en uso.") 
+            
+    def time_label_exists(self):
+        return hasattr(self.game_view, 'time_label') and self.game_view.time_label is not None and isinstance(self.game_view.time_label.master, Toplevel)
             
     def show_loading_window(self, message):
         self.loading_root = Toplevel(self.root)
         self.loading_root.title("Pantalla de carga")
-        label = tk.Label(self.loading_root, text=message)
+        label = Label(self.loading_root, text=message)
         label.pack(expand=True)
-        self.loading_root.grab_set()  #Asegura el bloqueo de la interacción con otras ventanas.
-        self.root.update_idletasks()  #Refresca la interfaz.
+        self.loading_root.grab_set()
+        self.root.update_idletasks()
     
     def check_images_loaded(self):
         if self.model.images_are_loaded():
+            # Cerrar la ventana de carga
             self.loading_root.destroy()
-            self.game_view = GameView(self.on_card_click, self.update_move_count, self.update_time)
-            self.game_view.create_board(self.model)
+            
+            # Crear la vista del juego y pasar el modelo
+            self.game_view = GameView(self.on_card_click, self.update_move_count, self.update_time, self.model)
+            
+            # Generar el tablero utilizando la imagen trasera (hidden_image)
+            self.game_view.create_board()  # Pasa hidden_image correctamente
         else:
+            # Verificar cada 100ms si las imágenes han sido cargadas
             self.root.after(100, self.check_images_loaded)
             
     def on_card_click(self, pos):
@@ -71,16 +79,14 @@ class GameController:
             self.timer_started = True
             self.update_time()
 
-        # Añadir posición a la lista seleccionada y actualizar la vista.
         if pos not in self.selected:
             self.selected.append(pos)
             row, col = pos
-            image = self.model.images[self.model.board[row][col]]  
+            image = self.model.images[self.model.board[row][col]]
             self.game_view.update_board(pos, image)
 
         if len(self.selected) == 2:
-            # Añade un pequeño retraso para mostrar la segunda carta.
-            self.root.after(1000, self.handle_card_selection)  
+            self.root.after(1000, self.handle_card_selection)
             
     def handle_card_selection(self):
         if len(self.selected) == 2:
@@ -94,10 +100,8 @@ class GameController:
                 self.game_view.update_board(pos1, image1)
                 self.game_view.update_board(pos2, image2)
             else:
-                # Pausa de 1 segundo antes de ocultar las cartas.
                 self.root.after(1000, lambda: self.game_view.reset_cards(pos1, pos2))
                 
-            # Limpiar la lista de seleccionados después de procesar.
             self.selected.clear()
         self.update_move_count(self.model.moves)
 
@@ -109,13 +113,20 @@ class GameController:
 
     def check_game_complete(self):
         if self.model.is_game_complete():
-            messagebox.showinfo("Fin de la partida", "¡Has encontrado todas las parejas!")
-            self.return_to_main_menu()
+            if not hasattr(self, 'game_complete_shown'):  #Evitar mostrar varias veces.
+                self.game_complete_shown = True
+                self.save_game_data()
+                messagebox.showinfo("Fin de la partida", "¡Has encontrado todas las parejas!")
+                self.return_to_main_menu()
+
+    def save_game_data(self):
+        with open("game_data.txt", "a") as file:
+            file.write(f"{self.player_name}, Movimientos: {self.model.moves}, Tiempo: {self.current_time}\n")
 
     def show_stats(self):
         if self.model:
-            stats = self.model.load_scores()  # Ahora cargamos los puntajes.
-            stats_root = tk.Toplevel(self.root)
+            stats = self.model.load_scores()
+            stats_root = Toplevel(self.root)
             stats_root.title("Estadísticas")
             for level, entries in stats.items():
                 tk.Label(stats_root, text=f"{level}").pack()
@@ -125,10 +136,18 @@ class GameController:
             messagebox.showerror("Error", "No se puede cargar las estadísticas sin un modelo válido.")
 
     def update_time(self):
-        if self.timer_started:
+        if self.timer_started and self.time_label_exists():
             self.current_time += 1
             self.game_view.update_time(self.current_time)
             self.root.after(1000, self.update_time)
-            
+
+    def time_label_exists(self):
+        return self.game_view.time_label and isinstance(self.game_view.time_label.master, tk.Toplevel)
+    
+    def quit_application(self):
+        self.root.quit() 
+
     def return_to_main_menu(self):
-        self.root.quit()
+        if self.game_view:
+            self.game_view.destroy()
+        self.menu.window.deiconify()
