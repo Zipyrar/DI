@@ -75,7 +75,7 @@ class GameController:
         if pos not in self.selected:
             self.selected.append(pos)
             row, col = pos
-            image = self.model.images[self.model.board[row][col]]  # Accedemos directamente a las imágenes del modelo
+            image = self.model.images[self.model.board[row][col]]  
             self.game_view.update_board(pos, image)
 
         if len(self.selected) == 2:

@@ -79,10 +79,10 @@ class GameModel:
         return int(time.time() - self.start_time)
     
     def check_match(self, pos1, pos2):
-        # Verifica si las cartas en las dos posiciones dadas coinciden.
+        #Verifica si las cartas en las dos posiciones dadas coinciden.
         self.moves += 1
         
-        first_card = self.board[pos1[0]][pos1[1]]  # Asegúrate de que se accede correctamente a las posiciones.
+        first_card = self.board[pos1[0]][pos1[1]]  
         second_card = self.board[pos2[0]][pos2[1]]
         
         if first_card == second_card:
