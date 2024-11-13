@@ -49,17 +49,20 @@ class GameModel:
         # Cargar la imagen oculta
         self.hidden_image = descargar_imagen(f"{base_url}tkinter_logo.png", size=(self.cell_size, self.cell_size))
 
-        self.images = []  # Lista para almacenar las imágenes.
+        # Lista temporal para almacenar las imágenes cargadas (sin duplicar)
+        loaded_images = []
         
-        # Cargar las imágenes
         for image_name in images_names:
-            # URL completa de cada imagen.
             url = f"{base_url}{image_name}"
             image = descargar_imagen(url, size=(self.cell_size, self.cell_size))
             if image:
-                self.images.extend([image, image])
-        
-        random.shuffle(self.images)  # Mezcla las imágenes.
+                loaded_images.append(image)
+
+        # Selecciona solo el número necesario de pares de imágenes
+        total_pairs = (self.board_size ** 2) // 2
+        if len(loaded_images) >= total_pairs:
+            self.images = random.sample(loaded_images, total_pairs) * 2 # Duplicar cada imagen para crear pares
+            random.shuffle(self.images)  # Mezcla las imágenes.
 
         # Señaliza que las imágenes están cargadas.
         self.images_loaded_event.set()
@@ -117,10 +120,10 @@ class GameModel:
             scores[self.difficulty] = sorted(scores[self.difficulty], key=lambda x: x['Movimientos'])[:3]
 
             print("Guardando datos en el archivo...")
-            with open('Sprint4tkinter\\ranking.txt', 'w', newline='') as file:
+            with open('ranking.txt', 'w', newline='') as file:
                 for level, entries in scores.items():
                     for entry in entries:
-                        file.write(f"{entry['Nombre']},{entry['Dificultad']},{entry['Movimientos']},{entry['Fecha']}\n")
+                        file.write(f"{entry['Nombre']},{level},{entry['Movimientos']},{entry['Fecha']}\n")
             print("Datos guardados exitosamente.")
         except Exception as e:
             print(f"Error al guardar la puntuación: {e}")
@@ -129,7 +132,7 @@ class GameModel:
         # Carga las puntuaciones desde el archivo de ranking.
         scores = {'Fácil': [], 'Normal': [], 'Difícil': []}
         try:
-            with open('Sprint4tkinter\\ranking.txt', 'r') as file:
+            with open('ranking.txt', 'r') as file:
                 for line in file:
                     parts = line.strip().split(',')
                     if len(parts) == 4:  # Verifica que la línea tenga 4 partes
@@ -143,7 +146,7 @@ class GameModel:
                     else:
                         print(f"Línea ignorada por formato incorrecto: {line.strip()}")
         except FileNotFoundError:
-            with open('Sprint4tkinter\\ranking.txt', 'w') as file:
+            with open('ranking.txt', 'w') as file:
                 file.write('')  # Crea el archivo vacío si no existe.
         except Exception as e:
             print(f"Error al crear el archivo de ranking: {e}")

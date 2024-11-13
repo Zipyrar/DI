@@ -71,8 +71,8 @@ class GameController:
             # Generar el tablero utilizando la imagen trasera (hidden_image)
             self.game_view.create_board()  # Pasa hidden_image correctamente
         else:
-            # Verificar cada 100ms si las imágenes han sido cargadas
-            self.root.after(100, self.check_images_loaded)
+            # Verificar cada 50ms si las imágenes han sido cargadas
+            self.root.after(500, self.check_images_loaded)
             
     def on_card_click(self, pos):
         if not self.timer_started:
@@ -86,7 +86,7 @@ class GameController:
             self.game_view.update_board(pos, image)
 
         if len(self.selected) == 2:
-            self.root.after(1000, self.handle_card_selection)
+            self.root.after(500, self.handle_card_selection)
             
     def handle_card_selection(self):
         if len(self.selected) == 2:
@@ -100,7 +100,7 @@ class GameController:
                 self.game_view.update_board(pos1, image1)
                 self.game_view.update_board(pos2, image2)
             else:
-                self.root.after(1000, lambda: self.game_view.reset_cards(pos1, pos2))
+                self.root.after(100, lambda: self.game_view.reset_cards(pos1, pos2))
                 
             self.selected.clear()
         self.update_move_count(self.model.moves)
@@ -115,13 +115,9 @@ class GameController:
         if self.model.is_game_complete():
             if not hasattr(self, 'game_complete_shown'):  #Evitar mostrar varias veces.
                 self.game_complete_shown = True
-                self.save_game_data()
+                self.model.save_score()
                 messagebox.showinfo("Fin de la partida", "¡Has encontrado todas las parejas!")
                 self.return_to_main_menu()
-
-    def save_game_data(self):
-        with open("game_data.txt", "a") as file:
-            file.write(f"{self.player_name}, Movimientos: {self.model.moves}, Tiempo: {self.current_time}\n")
 
     def show_stats(self):
         if self.model:
