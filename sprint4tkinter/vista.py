@@ -39,10 +39,10 @@ class GameView:
         
     def reset_cards(self, pos1, pos2):
         if pos1 in self.labels:
-            self.labels[pos1].config(image="", text="?")
+            self.labels[pos1].config(image=self.model.hidden_image)  #Usar una imagen predefinida para mantener el tamaño
         if pos2 in self.labels:
-            self.labels[pos2].config(image="", text="?")
-        
+            self.labels[pos2].config(image=self.model.hidden_image)
+            
     def update_move_count(self, moves):
         self.moves_label.config(text=f"Movimientos: {moves}")
         
