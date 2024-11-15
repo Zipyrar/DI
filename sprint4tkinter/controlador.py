@@ -41,7 +41,7 @@ class GameController:
                 self.model.size = 100
                 self.model.start_timer()
                 self.update_time()
-                threading.Thread(target=self.model._load_images, daemon=True).start() 
+                #threading.Thread(target=self.model._load_images, daemon=True).start() 
                 self.model.start_timer()
                 self.check_images_loaded()
             else:
@@ -66,10 +66,10 @@ class GameController:
             self.loading_root.destroy()
             
             # Crear la vista del juego y pasar el modelo
-            self.game_view = GameView(self.on_card_click, self.update_move_count, self.update_time, self.model)
+            self.game_view = GameView(self.root, self.on_card_click, self.update_move_count, self.update_time, self.model)
             
-            # Generar el tablero utilizando la imagen trasera (hidden_image)
-            self.game_view.create_board()  # Pasa hidden_image correctamente
+            if self.game_window is None:
+                self.game_window = self.game_view.create_board()
         else:
             # Verificar cada 50ms si las imágenes han sido cargadas
             self.root.after(500, self.check_images_loaded)
@@ -115,9 +115,13 @@ class GameController:
         if self.model.is_game_complete():
             if not hasattr(self, 'game_complete_shown'):  #Evitar mostrar varias veces.
                 self.game_complete_shown = True
-                self.model.save_score()
+                self.save_game_data()
                 messagebox.showinfo("Fin de la partida", "¡Has encontrado todas las parejas!")
                 self.return_to_main_menu()
+                
+    def save_game_data(self):
+        with open("ranking.txt", "a") as file:
+            file.write(f"{self.player_name}, Dificultad: {self.model.difficulty}, Movimientos: {self.model.moves}, Tiempo: {self.current_time}\n")
 
     def show_stats(self):
         if self.model:

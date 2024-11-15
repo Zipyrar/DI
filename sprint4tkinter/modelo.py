@@ -31,7 +31,7 @@ class GameModel:
         self.board = [identifiers[i:i + self.board_size] for i in range(0, len(identifiers), self.board_size)]
         
     def _load_images(self):
-        # URL base que apunta a la rama `master` de GitHub
+        # URL base que apunta a la rama master de GitHub
         base_url = 'https://raw.githubusercontent.com/Zipyrar/Imagenes-juego-de-memoria/master/'
 
         # Nombres de las imágenes en el repositorio
@@ -51,18 +51,24 @@ class GameModel:
 
         # Lista temporal para almacenar las imágenes cargadas (sin duplicar)
         loaded_images = []
+        cnt = 0
         
         for image_name in images_names:
             url = f"{base_url}{image_name}"
             image = descargar_imagen(url, size=(self.cell_size, self.cell_size))
-            if image:
+            if image and cnt < (self.board_size**2) // 2:  # Solo cargar las imágenes necesarias para el tablero
                 loaded_images.append(image)
+                cnt += 1
 
         # Selecciona solo el número necesario de pares de imágenes
         total_pairs = (self.board_size ** 2) // 2
-        if len(loaded_images) >= total_pairs:
-            self.images = random.sample(loaded_images, total_pairs) * 2 # Duplicar cada imagen para crear pares
-            random.shuffle(self.images)  # Mezcla las imágenes.
+        unique_images = list(set(loaded_images))
+        if len(unique_images) >= total_pairs:
+            selected_images = unique_images[:total_pairs]
+            self.images = selected_images * 2  # Duplicar para pares
+            random.shuffle(self.images)
+        else:
+            print("Error: No hay suficientes imágenes únicas cargadas.")
 
         # Señaliza que las imágenes están cargadas.
         self.images_loaded_event.set()
@@ -123,7 +129,7 @@ class GameModel:
             with open('ranking.txt', 'w', newline='') as file:
                 for level, entries in scores.items():
                     for entry in entries:
-                        file.write(f"{entry['Nombre']},{level},{entry['Movimientos']},{entry['Fecha']}\n")
+                        file.write(f"{entry['Nombre']},{entry['Dificultad']},{entry['Movimientos']},{entry['Fecha']}\n")
             print("Datos guardados exitosamente.")
         except Exception as e:
             print(f"Error al guardar la puntuación: {e}")

@@ -1,9 +1,13 @@
 import tkinter as tk
 from tkinter import simpledialog
 from tkinter import Toplevel
+from tkinter import PhotoImage
+import gc
+
 
 class GameView:
-    def __init__(self, on_card_click_callback, update_move_count_callback, update_time_callback, model):
+    def __init__(self, root, on_card_click_callback, update_move_count_callback, update_time_callback, model):
+        self.root = root
         self.window = Toplevel()  # Usamos Toplevel o root según el contexto
         self.labels = {}
         self.on_card_click_callback = on_card_click_callback
@@ -13,6 +17,9 @@ class GameView:
 
         self.window.title("Juego de Memoria")
         
+        self.moves_label = tk.Label(self.root, text="Movimientos: 0")  # Añadir el label para los movimientos
+        self.moves_label.pack()
+        
         # Etiqueta de tiempo (solo una vez)
         self.time_label = tk.Label(self.window, text="0", font=("Helvetica", 24))
         self.time_label.grid(row=0, column=0, columnspan=2)  # Ajustar la posición según sea necesario
@@ -21,21 +28,63 @@ class GameView:
         self.create_board()
 
     def create_board(self):
-        # Aquí usamos la misma ventana que se creó en __init__
         for row in range(self.model.board_size):
             for col in range(self.model.board_size):
                 label = tk.Label(self.window, image=self.model.hidden_image, width=self.model.size, height=self.model.size, borderwidth=2, relief="raised")
-                label.grid(row=row+1, column=col)  # Ajustamos la posición para que no se superponga con el time_label
+                label.grid(row=row+1, column=col)  # Ajusta la posición
                 label.bind("<Button-1>", lambda e, r=row, c=col: self.on_card_click_callback((r, c)))
                 self.labels[(row, col)] = label
 
-        # Mostrar los movimientos
-        self.moves_label = tk.Label(self.window, text="Movimientos: 0")
-        self.moves_label.grid(row=self.model.board_size + 1, column=0, columnspan=self.model.board_size // 2)
+    def get_unique_image(path):
+        """Devuelve una nueva instancia de PhotoImage para evitar referencias compartidas."""
+        return PhotoImage(file=path)
 
+    def update_cell_image(self, row, col, new_image_path):
+        # Obtener una nueva imagen única
+        new_image = self.get_unique_image(new_image_path)
+        
+        # Obtener la imagen actual en la celda
+        current_image = self.board[row][col].image
+        
+        # Comprobar si la imagen actual es diferente de la nueva
+        if current_image != new_image:
+            print(f"Eliminando imagen previa de la celda ({row}, {col})")
+            
+            # Limpiar la imagen previa
+            self.board[row][col].image = None
+            self.board[row][col].config(image=None)
+
+            # Recolectar basura para eliminar referencias
+            gc.collect()  # Forzar recolección de basura
+
+            # Esperar para asegurar que la imagen previa sea eliminada antes de continuar
+            self.root.after(10, self.assign_new_image, row, col, new_image)  # 10ms de retraso
+
+    def assign_new_image(self, row, col, new_image):
+        # Asignar la nueva imagen única
+        print(f"Asignando nueva imagen a la celda ({row}, {col})")
+        self.board[row][col].image = new_image
+        self.board[row][col].config(image=new_image)
+            
+    def check_all_cells(self):
+        for row in range(self.board_size):
+            for col in range(self.board_size):
+                current_image = self.board[row][col].image
+                print(f"Celda ({row}, {col}) tiene imagen: {current_image}")
+    
     def update_board(self, pos, image_id):
-        if pos in self.labels:
-            self.labels[pos].config(image=image_id)
+        row, col = pos
+        cell = self.labels.get((row, col))  # Obtenemos el Label correspondiente
+
+        if cell:  # Verificamos si la celda existe
+            if hasattr(cell, 'image') and cell.image:
+                print(f"Eliminando imagen previa de la celda {pos}")  # Mensaje de depuración
+                cell.config(image=None)  # Limpiar la imagen anterior
+                cell.image = None  # Limpiar la referencia de la imagen
+            
+            print(f"Asignando nueva imagen a la celda {pos}")  # Mensaje de depuración
+            cell.config(image=image_id)  # Actualizar la celda con la nueva imagen
+            cell.image = image_id 
         
     def reset_cards(self, pos1, pos2):
         if pos1 in self.labels:
