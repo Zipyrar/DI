@@ -1,2 +1,4 @@
 mmm, Dificultad: fï¿½cil, Movimientos: 23, Tiempo: 34
-pppp, Dificultad: fï¿½cil, Movimientos: 20, Tiempo: 30pppp, Dificultad: fácil, Movimientos: 27, Tiempo: 52
+pppp, Dificultad: fï¿½cil, Movimientos: 20, Tiempo: 30
+pppp, Dificultad: fï¿½cil, Movimientos: 27, Tiempo: 52
+ppp, Dificultad: fï¿½cil, Movimientos: 20, Tiempo: 36

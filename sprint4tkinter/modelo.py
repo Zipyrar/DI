@@ -65,7 +65,7 @@ class GameModel:
         unique_images = list(set(loaded_images))
         if len(unique_images) >= total_pairs:
             selected_images = unique_images[:total_pairs]
-            self.images = selected_images * 2  # Duplicar para pares
+            self.images = selected_images # Duplicar para pares
             random.shuffle(self.images)
         else:
             print("Error: No hay suficientes imágenes únicas cargadas.")
@@ -129,7 +129,7 @@ class GameModel:
             with open('ranking.txt', 'w', newline='') as file:
                 for level, entries in scores.items():
                     for entry in entries:
-                        file.write(f"{entry['Nombre']},{entry['Dificultad']},{entry['Movimientos']},{entry['Fecha']}\n")
+                        file.writelines(f"{entry['Nombre']},{entry['Dificultad']},{entry['Movimientos']},{entry['Fecha']}\n")
             print("Datos guardados exitosamente.")
         except Exception as e:
             print(f"Error al guardar la puntuación: {e}")
