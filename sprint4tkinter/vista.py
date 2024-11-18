@@ -8,7 +8,7 @@ import gc
 class GameView:
     def __init__(self, root, on_card_click_callback, update_move_count_callback, update_time_callback, model):
         self.root = root
-        self.window = Toplevel()  # Usamos Toplevel o root según el contexto
+        self.window = Toplevel() 
         self.labels = {}
         self.on_card_click_callback = on_card_click_callback
         self.update_move_count_callback = update_move_count_callback
@@ -17,12 +17,12 @@ class GameView:
 
         self.window.title("Juego de Memoria")
         
-        self.moves_label = tk.Label(self.root, text="Movimientos: 0")  # Añadir el label para los movimientos
-        self.moves_label.pack()
+        self.moves_label = tk.Label(self.window, text="Movimientos: 0")  # Añadir el label para los movimientos
+        self.moves_label.grid(row=10, column=0, columnspan=2, padx=10, pady=10)
         
         # Etiqueta de tiempo (solo una vez)
-        self.time_label = tk.Label(self.window, text="0", font=("Helvetica", 24))
-        self.time_label.grid(row=0, column=0, columnspan=2)  # Ajustar la posición según sea necesario
+        self.time_label = tk.Label(self.window, text="Tiempo: 0")
+        self.time_label.grid(row=10, column=2, columnspan=2, padx=10, pady=10) # Ajustar la posición según sea necesario
         
         # Crear el tablero
         self.create_board()
@@ -31,7 +31,7 @@ class GameView:
         for row in range(self.model.board_size):
             for col in range(self.model.board_size):
                 label = tk.Label(self.window, image=self.model.hidden_image, width=self.model.size, height=self.model.size, borderwidth=2, relief="raised")
-                label.grid(row=row+1, column=col)  # Ajusta la posición
+                label.grid(row=row, column=col) # Ajusta la posición
                 label.bind("<Button-1>", lambda e, r=row, c=col: self.on_card_click_callback((r, c)))
                 self.labels[(row, col)] = label
 

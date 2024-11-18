@@ -1,5 +1,7 @@
-import threading, time, random, datetime
+import threading, time, random
+from datetime import datetime
 from recursos import descargar_imagen
+import os
 
 class GameModel:
     def __init__(self, difficulty, player_name, cell_size=100):
@@ -8,9 +10,9 @@ class GameModel:
         self.cell_size = 100
         
         self.board_size = {
-            'fácil': 4,
+            'facil': 4,
             'normal': 6,
-            'difícil': 8,
+            'dificil': 8,
         }.get(difficulty, 6)
             
         self.start_time = None
@@ -20,6 +22,7 @@ class GameModel:
         self.images_loaded_event = threading.Event()  # Evento para saber cuando las imágenes están cargadas
         self.matched_positions = []  #Lista para almacenar posiciones de cartas encontradas.
         
+        self.scores = self.load_scores()
         self._generate_board()
         threading.Thread(target=self._load_images).start()  # Usar un hilo para cargar imágenes de forma asíncrona.
         
@@ -110,50 +113,60 @@ class GameModel:
         total_pairs = (self.board_size ** 2) // 2
         return total_pairs == self.pairs_found
     
-    def save_score(self):
-        # Guarda la puntuación del jugador en un archivo de ranking
-        score_data = {
-            'Nombre': self.player_name,
-            'Dificultad': self.difficulty,
-            'Movimientos': self.moves,
-            'Fecha': datetime.datetime.now().strftime('%d/%m/%Y  %H:%M:%S')
-        }
-        
-        try:
-            scores = self.load_scores()
-            scores[self.difficulty].append(score_data)
-            # Ordena las puntuaciones y guarda solo las 3 mejores.
-            scores[self.difficulty] = sorted(scores[self.difficulty], key=lambda x: x['Movimientos'])[:3]
+    def save_score(self, player_name, moves, time_taken):
+        """Guardar la puntuación en el archivo ranking.txt y en memoria"""
+        fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        score_line = f"{player_name},{self.difficulty},{moves},{time_taken},{fecha}\n"
 
-            print("Guardando datos en el archivo...")
-            with open('ranking.txt', 'w', newline='') as file:
-                for level, entries in scores.items():
-                    for entry in entries:
-                        file.writelines(f"{entry['Nombre']},{entry['Dificultad']},{entry['Movimientos']},{entry['Fecha']}\n")
-            print("Datos guardados exitosamente.")
-        except Exception as e:
-            print(f"Error al guardar la puntuación: {e}")
+        # Guardar la puntuación en el archivo
+        with open("ranking.txt", "a") as file:
+            file.write(score_line)
+
+        # Guardar la puntuación en memoria
+        self.scores[self.difficulty].append({
+            "name": player_name,
+            "difficulty": self.difficulty,
+            "moves": moves,
+            "time_taken": time_taken,
+            "date": fecha
+        })
+
+        # Ordenar y mantener solo las 3 mejores puntuaciones
+        self.sort_scores()
+
+    def sort_scores(self):
+        """Ordenar las puntuaciones por dificultad y mantener las 3 mejores"""
+        # Ordenamos por dificultad, luego por el número de movimientos (menos es mejor), y finalmente por el tiempo (menos es mejor)
+        for difficulty in self.scores:
+            # Ordenamos por número de movimientos (menos es mejor) y luego por tiempo (menos es mejor)
+            self.scores[difficulty] = sorted(self.scores[difficulty], key=lambda x: (x['moves'], x['time_taken']))[:3]
+        
+        # Depuración: Imprimir las puntuaciones ordenadas
+        print("Puntuaciones ordenadas:", self.scores)
 
     def load_scores(self):
-        # Carga las puntuaciones desde el archivo de ranking.
-        scores = {'Fácil': [], 'Normal': [], 'Difícil': []}
-        try:
-            with open('ranking.txt', 'r') as file:
-                for line in file:
-                    parts = line.strip().split(',')
-                    if len(parts) == 4:  # Verifica que la línea tenga 4 partes
-                        name, level, moves, date = parts
-                        scores[level].append({
-                            'Nombre': name,
-                            'Dificultad': level,
-                            'Movimientos': int(moves),
-                            'Fecha': date
-                        })
-                    else:
-                        print(f"Línea ignorada por formato incorrecto: {line.strip()}")
-        except FileNotFoundError:
-            with open('ranking.txt', 'w') as file:
-                file.write('')  # Crea el archivo vacío si no existe.
-        except Exception as e:
-            print(f"Error al crear el archivo de ranking: {e}")
+        """Cargar las puntuaciones desde el archivo ranking.txt"""
+        # Si el archivo no existe, retornamos las puntuaciones vacías
+        scores = {"facil": [], "normal": [], "dificil": []}
+
+        if not os.path.exists("ranking.txt"):
+            return scores  # Si el archivo no existe, retornamos las puntuaciones vacías
+
+        # Leer el archivo y cargar las puntuaciones
+        with open("ranking.txt", "r") as file:
+            for line in file:
+                name, difficulty, moves, time_taken, date = line.strip().split(",")
+                # Añadir la puntuación al diccionario correspondiente
+                scores[difficulty].append({
+                    "name": name,
+                    "difficulty": difficulty,
+                    "moves": int(moves),
+                    "time_taken": int(time_taken),
+                    "date": date
+                })
+
+        # Ordenar las puntuaciones tras cargar los datos
+        for difficulty in scores:
+            scores[difficulty] = sorted(scores[difficulty], key=lambda x: (x['moves'], x['time_taken']))[:3]
+
         return scores

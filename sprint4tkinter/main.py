@@ -6,7 +6,8 @@ from vista import MainMenu, GameView
 def main():
     root = tk.Tk()
     
-    controller = GameController(root, GameModel, MainMenu, GameView)
+    # Pasar la instancia al controlador
+    controller = GameController(root)
 
     root.mainloop()
     

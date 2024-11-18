@@ -1,4 +1,1 @@
-mmm, Dificultad: f�cil, Movimientos: 23, Tiempo: 34
-pppp, Dificultad: f�cil, Movimientos: 20, Tiempo: 30
-pppp, Dificultad: f�cil, Movimientos: 27, Tiempo: 52
-ppp, Dificultad: f�cil, Movimientos: 20, Tiempo: 36
+ppp,facil,20,30,2024-11-18 15:16:19

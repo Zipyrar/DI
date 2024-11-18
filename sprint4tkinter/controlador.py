@@ -6,23 +6,23 @@ import threading
 import time
 
 class GameController:
-    def __init__(self, root, model, menu, game_view):
+    def __init__(self, root):
         self.root = root
         self.selected = []
         self.timer_started = False
         self.player_name = ""
         self.current_time = 0
-        self.model = model
-        self.menu = menu
-        self.game_view = game_view
+        self.model = None
+        self.menu = None
+        self.game_view = None
         self.game_window = None 
         
         self.menu = MainMenu(root, self.show_difficulty_selection, self.show_stats, self.quit_application)
 
     def show_difficulty_selection(self):
-        difficulty = simpledialog.askstring("Dificultad", "Selecciona la dificultad (fácil, normal, difícil):")
+        difficulty = simpledialog.askstring("Dificultad", "Selecciona la dificultad (facil, normal, dificil):")
         
-        if difficulty in ['fácil', 'normal', 'difícil']:
+        if difficulty in ['facil', 'normal', 'dificil']:
             self.player_name = self.menu.ask_player_name()
             
             if self.player_name:
@@ -35,13 +35,17 @@ class GameController:
     def start_game(self, difficulty):
         if self.game_window is None:
             self.show_loading_window("Cargando tablero...")
+            
+            self.timer_started = False
+            self.current_time = 0
+            self.moves = 0
+            self.pairs_found = 0
 
             if self.player_name and difficulty:
                 self.model = GameModel(difficulty, self.player_name)
                 self.model.size = 100
                 self.model.start_timer()
                 self.update_time()
-                #threading.Thread(target=self.model._load_images, daemon=True).start() 
                 self.model.start_timer()
                 self.check_images_loaded()
             else:
@@ -115,25 +119,27 @@ class GameController:
         if self.model.is_game_complete():
             if not hasattr(self, 'game_complete_shown'):  #Evitar mostrar varias veces.
                 self.game_complete_shown = True
-                self.save_game_data()
+                self.model.save_score(self.player_name, self.model.moves, self.current_time)
                 messagebox.showinfo("Fin de la partida", "¡Has encontrado todas las parejas!")
                 self.return_to_main_menu()
-                
-    def save_game_data(self):
-        with open("ranking.txt", "a") as file:
-            file.write(f"{self.player_name}, Dificultad: {self.model.difficulty}, Movimientos: {self.model.moves}, Tiempo: {self.current_time}\n")
-
+            
     def show_stats(self):
-        if self.model:
-            stats = self.model.load_scores()
-            stats_root = Toplevel(self.root)
-            stats_root.title("Estadísticas")
-            for level, entries in stats.items():
-                tk.Label(stats_root, text=f"{level}").pack()
-                for entry in entries:
-                    tk.Label(stats_root, text=f"{entry['Nombre']} - Movimientos: {entry['Movimientos']}").pack()
-        else:
-            messagebox.showerror("Error", "No se puede cargar las estadísticas sin un modelo válido.")
+        if self.model is None:
+            messagebox.showinfo("Estadísticas", "No hay estadísticas disponibles. Juega alguna partida primero.")
+            return
+
+        # Asegúrate de que las puntuaciones estén cargadas (aunque el juego no haya comenzado)
+        self.model.load_scores()
+
+        scores = self.model.scores  # Acceder a las puntuaciones guardadas en el modelo
+        stats_message = "Ranking por dificultad:\n"
+    
+        for difficulty, score_list in scores.items():
+            stats_message += f"\n{difficulty.capitalize()}:\n"
+            for idx, entry in enumerate(score_list):
+                stats_message += f"{idx + 1}. {entry['name']} - Movimientos: {entry['moves']}, Tiempo: {entry['time_taken']}s, Fecha: {entry['date']}\n"
+
+        messagebox.showinfo("Estadísticas", stats_message)
 
     def update_time(self):
         if self.timer_started and self.time_label_exists():
