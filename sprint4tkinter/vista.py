@@ -17,21 +17,21 @@ class GameView:
 
         self.window.title("Juego de Memoria")
         
-        self.moves_label = tk.Label(self.window, text="Movimientos: 0")  # Añadir el label para los movimientos
+        self.moves_label = tk.Label(self.window, text="Movimientos: 0")  #Añadir el label para los movimientos.
         self.moves_label.grid(row=10, column=0, columnspan=2, padx=10, pady=10)
         
-        # Etiqueta de tiempo (solo una vez)
+        #Etiqueta de tiempo (solo una vez).
         self.time_label = tk.Label(self.window, text="Tiempo: 0")
-        self.time_label.grid(row=10, column=2, columnspan=2, padx=10, pady=10) # Ajustar la posición según sea necesario
+        self.time_label.grid(row=10, column=2, columnspan=2, padx=10, pady=10) #Ajustar la posición según sea necesario.
         
-        # Crear el tablero
+        #Crear el tablero.
         self.create_board()
 
     def create_board(self):
         for row in range(self.model.board_size):
             for col in range(self.model.board_size):
                 label = tk.Label(self.window, image=self.model.hidden_image, width=self.model.size, height=self.model.size, borderwidth=2, relief="raised")
-                label.grid(row=row, column=col) # Ajusta la posición
+                label.grid(row=row, column=col) #Ajusta la posición.
                 label.bind("<Button-1>", lambda e, r=row, c=col: self.on_card_click_callback((r, c)))
                 self.labels[(row, col)] = label
 
@@ -40,28 +40,28 @@ class GameView:
         return PhotoImage(file=path)
 
     def update_cell_image(self, row, col, new_image_path):
-        # Obtener una nueva imagen única
+        #Obtener una nueva imagen única.
         new_image = self.get_unique_image(new_image_path)
         
-        # Obtener la imagen actual en la celda
+        #Obtener la imagen actual en la celda.
         current_image = self.board[row][col].image
         
-        # Comprobar si la imagen actual es diferente de la nueva
+        #Comprobar si la imagen actual es diferente de la nueva.
         if current_image != new_image:
             print(f"Eliminando imagen previa de la celda ({row}, {col})")
             
-            # Limpiar la imagen previa
+            #Limpiar la imagen previa.
             self.board[row][col].image = None
             self.board[row][col].config(image=None)
 
-            # Recolectar basura para eliminar referencias
-            gc.collect()  # Forzar recolección de basura
+            #Recolectar basura para eliminar referencias.
+            gc.collect()  #Forzar recolección de basura.
 
-            # Esperar para asegurar que la imagen previa sea eliminada antes de continuar
-            self.root.after(10, self.assign_new_image, row, col, new_image)  # 10ms de retraso
+            #Esperar para asegurar que la imagen previa sea eliminada antes de continuar.
+            self.root.after(10, self.assign_new_image, row, col, new_image)  #10ms de retraso.
 
     def assign_new_image(self, row, col, new_image):
-        # Asignar la nueva imagen única
+        #Asignar la nueva imagen única.
         print(f"Asignando nueva imagen a la celda ({row}, {col})")
         self.board[row][col].image = new_image
         self.board[row][col].config(image=new_image)
@@ -74,16 +74,16 @@ class GameView:
     
     def update_board(self, pos, image_id):
         row, col = pos
-        cell = self.labels.get((row, col))  # Obtenemos el Label correspondiente
+        cell = self.labels.get((row, col))  #Obtenemos el Label correspondiente.
 
-        if cell:  # Verificamos si la celda existe
+        if cell:  #Verificamos si la celda existe.
             if hasattr(cell, 'image') and cell.image:
-                print(f"Eliminando imagen previa de la celda {pos}")  # Mensaje de depuración
-                cell.config(image=None)  # Limpiar la imagen anterior
-                cell.image = None  # Limpiar la referencia de la imagen
+                print(f"Eliminando imagen previa de la celda {pos}")  #Mensaje de depuración.
+                cell.config(image=None)  #Limpiar la imagen anterior.
+                cell.image = None  #Limpiar la referencia de la imagen.
             
-            print(f"Asignando nueva imagen a la celda {pos}")  # Mensaje de depuración
-            cell.config(image=image_id)  # Actualizar la celda con la nueva imagen
+            print(f"Asignando nueva imagen a la celda {pos}")  #Mensaje de depuración.
+            cell.config(image=image_id)  #Actualizar la celda con la nueva imagen.
             cell.image = image_id 
         
     def reset_cards(self, pos1, pos2):
@@ -122,11 +122,11 @@ class MainMenu:
         self.quit.pack(pady=20)
 
     def ask_player_name(self):
-        # Pedir el nombre del jugador con simpledialog
+        #Pedir el nombre del jugador con simpledialog.
         player_name = simpledialog.askstring("Nombre del Jugador", "Ingresa tu nombre:")
 
         if not player_name:
-            player_name = "Jugador"  # Valor predeterminado si no se ingresa un nombre.
+            player_name = "Jugador"  #Valor predeterminado si no se ingresa un nombre.
 
         return player_name
     

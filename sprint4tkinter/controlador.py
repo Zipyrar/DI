@@ -66,16 +66,16 @@ class GameController:
     
     def check_images_loaded(self):
         if self.model.images_are_loaded():
-            # Cerrar la ventana de carga
+            #Cerrar la ventana de carga.
             self.loading_root.destroy()
             
-            # Crear la vista del juego y pasar el modelo
+            #Crear la vista del juego y pasar el modelo.
             self.game_view = GameView(self.root, self.on_card_click, self.update_move_count, self.update_time, self.model)
             
             if self.game_window is None:
                 self.game_window = self.game_view.create_board()
         else:
-            # Verificar cada 50ms si las imágenes han sido cargadas
+            #Verificar cada 50ms si las imágenes han sido cargadas.
             self.root.after(500, self.check_images_loaded)
             
     def on_card_click(self, pos):
@@ -128,10 +128,10 @@ class GameController:
             messagebox.showinfo("Estadísticas", "No hay estadísticas disponibles. Juega alguna partida primero.")
             return
 
-        # Asegúrate de que las puntuaciones estén cargadas (aunque el juego no haya comenzado)
+        #Asegura de que las puntuaciones estén cargadas (aunque el juego no haya comenzado).
         self.model.load_scores()
 
-        scores = self.model.scores  # Acceder a las puntuaciones guardadas en el modelo
+        scores = self.model.scores  #Acceder a las puntuaciones guardadas en el modelo.
         stats_message = "Ranking por dificultad:\n"
     
         for difficulty, score_list in scores.items():
