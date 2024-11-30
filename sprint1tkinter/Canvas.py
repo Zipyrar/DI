@@ -15,7 +15,7 @@ def dibujo():
     
     #Dibuja las figuras.
     canvas.create_oval(cX1, cY1, cX2, cY2, fill="orange")
-    canvas.create_rectangle(rX1, rY1, rY1, rY2, fill="blue")
+    canvas.create_rectangle(rX1, rY1, rX2, rY2, fill="blue")
     
 
 circ_tam = tk.Label(w, text="Introduce el tamaño del círculo (x1, y1, x2, y2):")
