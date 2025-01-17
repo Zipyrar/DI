@@ -46,7 +46,8 @@ public class RegisterActivity extends AppCompatActivity {
         if (email.isEmpty() || password.isEmpty() || confirmP.isEmpty() || name.isEmpty() || phone.isEmpty() || direction.isEmpty()) {
             Toast.makeText(this, "Por favor, completa todos los campos.", Toast.LENGTH_SHORT).show();
             return;
-        } else if (!password.equals(confirmP)) {
+        }
+        if (!password.equals(confirmP)) {
             Toast.makeText(this, "Las contraseñas no coinciden.", Toast.LENGTH_SHORT).show();
             return;
         }
