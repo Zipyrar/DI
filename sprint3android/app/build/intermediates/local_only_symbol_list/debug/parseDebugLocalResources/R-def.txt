@@ -1,0 +1,36 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color white
+drawable aguila
+drawable baseline_home_24
+drawable baseline_info_24
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+id bottomNavigation
+id catalog
+id description
+id image
+id left_section
+id main
+id nav
+id nav_hostfragment
+id navigateDetail
+id page_about
+id page_catalog
+id title
+layout activity_catalog
+layout activity_detail
+layout activity_main
+layout fragment_about
+layout fragment_catalog
+menu menu_bottom
+mipmap ic_launcher
+mipmap ic_launcher_round
+navigation nav
+string app_name
+string hello_blank_fragment
+style Base.Theme.MyCatalog
+style Theme.MyCatalog
+xml backup_rules
+xml data_extraction_rules

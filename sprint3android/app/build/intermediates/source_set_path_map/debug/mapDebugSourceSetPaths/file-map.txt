@@ -1,0 +1,47 @@
+com.zipyrar.mycatalog.app-annotation-experimental-1.4.1-0 C:\Users\skype\.gradle\caches\transforms-4\050890ec975f936d3b4ec2a971eb0a3b\transformed\annotation-experimental-1.4.1\res
+com.zipyrar.mycatalog.app-drawerlayout-1.1.1-1 C:\Users\skype\.gradle\caches\transforms-4\118b96691258e47d6eaa6b0ffe19622c\transformed\drawerlayout-1.1.1\res
+com.zipyrar.mycatalog.app-activity-ktx-1.9.3-2 C:\Users\skype\.gradle\caches\transforms-4\22fe282f61de6b45956c39249cc99780\transformed\activity-ktx-1.9.3\res
+com.zipyrar.mycatalog.app-slidingpanelayout-1.2.0-3 C:\Users\skype\.gradle\caches\transforms-4\2b477e67add1552acddf2e4090b1a2cc\transformed\slidingpanelayout-1.2.0\res
+com.zipyrar.mycatalog.app-transition-1.5.0-4 C:\Users\skype\.gradle\caches\transforms-4\2e08f0658e8fc306630cd6ba67fe6b29\transformed\transition-1.5.0\res
+com.zipyrar.mycatalog.app-material-1.12.0-5 C:\Users\skype\.gradle\caches\transforms-4\2f08d5c68c4b0802296954685f4a29b9\transformed\material-1.12.0\res
+com.zipyrar.mycatalog.app-lifecycle-viewmodel-ktx-2.6.2-6 C:\Users\skype\.gradle\caches\transforms-4\31309ebc0093dd38d1e741637e6765d5\transformed\lifecycle-viewmodel-ktx-2.6.2\res
+com.zipyrar.mycatalog.app-lifecycle-viewmodel-savedstate-2.6.2-7 C:\Users\skype\.gradle\caches\transforms-4\4142f3851370275710340b81b406a50e\transformed\lifecycle-viewmodel-savedstate-2.6.2\res
+com.zipyrar.mycatalog.app-activity-1.9.3-8 C:\Users\skype\.gradle\caches\transforms-4\4592033b14900dba49e412f2068b22bf\transformed\activity-1.9.3\res
+com.zipyrar.mycatalog.app-viewpager2-1.0.0-9 C:\Users\skype\.gradle\caches\transforms-4\4b3ecb14503b87d6b6ac0bf7d3aff9e7\transformed\viewpager2-1.0.0\res
+com.zipyrar.mycatalog.app-lifecycle-viewmodel-2.6.2-10 C:\Users\skype\.gradle\caches\transforms-4\5bba7cd2cc126f88dfa979034a89d55e\transformed\lifecycle-viewmodel-2.6.2\res
+com.zipyrar.mycatalog.app-fragment-ktx-1.6.2-11 C:\Users\skype\.gradle\caches\transforms-4\5c30b129010996f6200e3a80602933ee\transformed\fragment-ktx-1.6.2\res
+com.zipyrar.mycatalog.app-navigation-common-2.8.4-12 C:\Users\skype\.gradle\caches\transforms-4\7b1e3cb83c0d40283563ad5491b69cd4\transformed\navigation-common-2.8.4\res
+com.zipyrar.mycatalog.app-navigation-ui-2.8.4-13 C:\Users\skype\.gradle\caches\transforms-4\845d460edd9b0a05e7589c30b24721dc\transformed\navigation-ui-2.8.4\res
+com.zipyrar.mycatalog.app-navigation-runtime-2.8.4-14 C:\Users\skype\.gradle\caches\transforms-4\869dd621b38927333c674cdd1127005a\transformed\navigation-runtime-2.8.4\res
+com.zipyrar.mycatalog.app-lifecycle-livedata-2.6.2-15 C:\Users\skype\.gradle\caches\transforms-4\9268b19435e286da3dcdb55f37c6e7f3\transformed\lifecycle-livedata-2.6.2\res
+com.zipyrar.mycatalog.app-recyclerview-1.1.0-16 C:\Users\skype\.gradle\caches\transforms-4\b63bd1dec5a82b9cf0297a9d87331c18\transformed\recyclerview-1.1.0\res
+com.zipyrar.mycatalog.app-cardview-1.0.0-17 C:\Users\skype\.gradle\caches\transforms-4\b938242a228a37aef7cecc134c1488db\transformed\cardview-1.0.0\res
+com.zipyrar.mycatalog.app-lifecycle-runtime-2.6.2-18 C:\Users\skype\.gradle\caches\transforms-4\be93fb6a0dc7ff262cf64e835adae6e7\transformed\lifecycle-runtime-2.6.2\res
+com.zipyrar.mycatalog.app-appcompat-1.7.0-19 C:\Users\skype\.gradle\caches\transforms-4\c12d95eb64454fbe9c1dc03b07569acb\transformed\appcompat-1.7.0\res
+com.zipyrar.mycatalog.app-lifecycle-livedata-core-ktx-2.6.2-20 C:\Users\skype\.gradle\caches\transforms-4\c1a6ef77b8c90237384e752ae2196dbf\transformed\lifecycle-livedata-core-ktx-2.6.2\res
+com.zipyrar.mycatalog.app-core-ktx-1.13.0-21 C:\Users\skype\.gradle\caches\transforms-4\c2507ee0a111f5336308f2ffdc185912\transformed\core-ktx-1.13.0\res
+com.zipyrar.mycatalog.app-startup-runtime-1.1.1-22 C:\Users\skype\.gradle\caches\transforms-4\ca1f656615ca7c247a6a5af6bc90ed95\transformed\startup-runtime-1.1.1\res
+com.zipyrar.mycatalog.app-core-runtime-2.2.0-23 C:\Users\skype\.gradle\caches\transforms-4\cc552f1a484e7a921d7ac507655eb1ff\transformed\core-runtime-2.2.0\res
+com.zipyrar.mycatalog.app-emoji2-1.3.0-24 C:\Users\skype\.gradle\caches\transforms-4\ce442c101fb74ac3492065fcb4c21df9\transformed\emoji2-1.3.0\res
+com.zipyrar.mycatalog.app-core-1.13.0-25 C:\Users\skype\.gradle\caches\transforms-4\d1ac0452a02089975f8302f7f7cc62d6\transformed\core-1.13.0\res
+com.zipyrar.mycatalog.app-savedstate-ktx-1.2.1-26 C:\Users\skype\.gradle\caches\transforms-4\d1e21ddd421f860e753d71920e269adf\transformed\savedstate-ktx-1.2.1\res
+com.zipyrar.mycatalog.app-navigation-fragment-2.8.4-27 C:\Users\skype\.gradle\caches\transforms-4\d20461f75b1255552d247623ef7891cb\transformed\navigation-fragment-2.8.4\res
+com.zipyrar.mycatalog.app-window-1.0.0-28 C:\Users\skype\.gradle\caches\transforms-4\d23b1250a665f3226261e6cd2f9384a9\transformed\window-1.0.0\res
+com.zipyrar.mycatalog.app-constraintlayout-2.2.0-29 C:\Users\skype\.gradle\caches\transforms-4\d4264f45ecc5775b52989341628051d4\transformed\constraintlayout-2.2.0\res
+com.zipyrar.mycatalog.app-glide-4.15.1-30 C:\Users\skype\.gradle\caches\transforms-4\d55515beefb30d2457cabe5defee6790\transformed\glide-4.15.1\res
+com.zipyrar.mycatalog.app-fragment-1.6.2-31 C:\Users\skype\.gradle\caches\transforms-4\d843c0038d352e8b195c201e7424181c\transformed\fragment-1.6.2\res
+com.zipyrar.mycatalog.app-appcompat-resources-1.7.0-32 C:\Users\skype\.gradle\caches\transforms-4\dc8e2a945eabd82d678229e761d7ca4b\transformed\appcompat-resources-1.7.0\res
+com.zipyrar.mycatalog.app-coordinatorlayout-1.1.0-33 C:\Users\skype\.gradle\caches\transforms-4\ed201835ceac202948685f1c2f552d87\transformed\coordinatorlayout-1.1.0\res
+com.zipyrar.mycatalog.app-emoji2-views-helper-1.3.0-34 C:\Users\skype\.gradle\caches\transforms-4\ee545ee48b530b1c2313cd73e4d4b4f6\transformed\emoji2-views-helper-1.3.0\res
+com.zipyrar.mycatalog.app-lifecycle-runtime-ktx-2.6.2-35 C:\Users\skype\.gradle\caches\transforms-4\f5fcea6cec99f5aa1bd0be3a439a9187\transformed\lifecycle-runtime-ktx-2.6.2\res
+com.zipyrar.mycatalog.app-lifecycle-livedata-core-2.6.2-36 C:\Users\skype\.gradle\caches\transforms-4\fa6d1ea5df4f74386591ea5e130df061\transformed\lifecycle-livedata-core-2.6.2\res
+com.zipyrar.mycatalog.app-profileinstaller-1.4.0-37 C:\Users\skype\.gradle\caches\transforms-4\fc38360d4867c3ee9435ae24595aa2e5\transformed\profileinstaller-1.4.0\res
+com.zipyrar.mycatalog.app-savedstate-1.2.1-38 C:\Users\skype\.gradle\caches\transforms-4\fd2274c33f2a444e4480f566b0d9977f\transformed\savedstate-1.2.1\res
+com.zipyrar.mycatalog.app-lifecycle-process-2.6.2-39 C:\Users\skype\.gradle\caches\transforms-4\fe01be6a1d8816b41dcac405703eb3e2\transformed\lifecycle-process-2.6.2\res
+com.zipyrar.mycatalog.app-pngs-40 C:\Users\skype\Documents\FP DAM 2\Desenvolvimiento de interfaces\DI\sprint3android\app\build\generated\res\pngs\debug
+com.zipyrar.mycatalog.app-resValues-41 C:\Users\skype\Documents\FP DAM 2\Desenvolvimiento de interfaces\DI\sprint3android\app\build\generated\res\resValues\debug
+com.zipyrar.mycatalog.app-packageDebugResources-42 C:\Users\skype\Documents\FP DAM 2\Desenvolvimiento de interfaces\DI\sprint3android\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.zipyrar.mycatalog.app-packageDebugResources-43 C:\Users\skype\Documents\FP DAM 2\Desenvolvimiento de interfaces\DI\sprint3android\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.zipyrar.mycatalog.app-debug-44 C:\Users\skype\Documents\FP DAM 2\Desenvolvimiento de interfaces\DI\sprint3android\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.zipyrar.mycatalog.app-debug-45 C:\Users\skype\Documents\FP DAM 2\Desenvolvimiento de interfaces\DI\sprint3android\app\src\debug\res
+com.zipyrar.mycatalog.app-main-46 C:\Users\skype\Documents\FP DAM 2\Desenvolvimiento de interfaces\DI\sprint3android\app\src\main\res

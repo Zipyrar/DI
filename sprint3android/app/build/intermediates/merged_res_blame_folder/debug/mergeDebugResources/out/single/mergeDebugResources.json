@@ -1,0 +1,114 @@
+[
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\layout-land_activity_detail.xml.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\layout-land\\activity_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\navigation_nav.xml.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\navigation\\nav.xml"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\drawable_aguila.jpg.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\drawable\\aguila.jpg"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\layout_fragment_about.xml.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\layout\\fragment_about.xml"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\mipmap-anydpi_ic_launcher.xml.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\mipmap-anydpi\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\drawable\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\drawable_baseline_home_24.xml.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\drawable\\baseline_home_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\menu_menu_bottom.xml.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\menu\\menu_bottom.xml"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\layout_activity_detail.xml.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\layout\\activity_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.zipyrar.mycatalog.app-debug-44:/navigation_nav.xml.flat",
+        "source": "com.zipyrar.mycatalog.app-main-46:/navigation/nav.xml"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\layout_activity_catalog.xml.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\layout\\activity_catalog.xml"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\drawable_baseline_info_24.xml.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\drawable\\baseline_info_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\mipmap-anydpi_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\mipmap-anydpi\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-debug-44:\\layout_fragment_catalog.xml.flat",
+        "source": "C:\\Users\\skype\\.gradle\\daemon\\8.7\\com.zipyrar.mycatalog.app-main-46:\\layout\\fragment_catalog.xml"
+    }
+]
