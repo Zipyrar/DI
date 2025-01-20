@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="firebase_database_url" translatable="false">https://proyectopersonalfirebase-default-rtdb.europe-west1.firebasedatabase.app</string>
+    <string name="gcm_defaultSenderId" translatable="false">962174298737</string>
+    <string name="google_api_key" translatable="false">AIzaSyB4zDkiAJm-fJGw3ieUx_ggOAZ4HXu2Tg8</string>
+    <string name="google_app_id" translatable="false">1:962174298737:android:b6705e5f34543b05fb09d0</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyB4zDkiAJm-fJGw3ieUx_ggOAZ4HXu2Tg8</string>
+    <string name="google_storage_bucket" translatable="false">proyectopersonalfirebase.firebasestorage.app</string>
+    <string name="project_id" translatable="false">proyectopersonalfirebase</string>
+</resources>
