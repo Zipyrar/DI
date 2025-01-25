@@ -10,7 +10,6 @@ import com.zipyrar.videojuegosfirebase.repositories.UserRepository;
 public class RegisterViewModel extends ViewModel {
     private final UserRepository userRepository;
 
-    //LiveData para manejar los resultados del registro.
     private final MutableLiveData<Boolean> registrationResult = new MutableLiveData<>();
     private final MutableLiveData<String> errorMessage = new MutableLiveData<>();
 
@@ -27,7 +26,6 @@ public class RegisterViewModel extends ViewModel {
     }
 
     public void registerUser(String email, String password, String confirmP, String name, String phone, String direction) {
-        //Validación de datos.
         if (email.isEmpty() || password.isEmpty() || confirmP.isEmpty() ||
                 name.isEmpty() || phone.isEmpty() || direction.isEmpty()) {
             errorMessage.setValue("Por favor, completa todos los campos.");
@@ -44,10 +42,8 @@ public class RegisterViewModel extends ViewModel {
             return;
         }
 
-        //Crear el objeto User.
         User user = new User(name, phone, direction);
 
-        //Llamar al repositorio para registrar al usuario.
         userRepository.registerUser(email, password, user).observeForever(result -> {
             if (result != null && result) {
                 registrationResult.setValue(true);

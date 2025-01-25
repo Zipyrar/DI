@@ -35,4 +35,17 @@ public class UserRepository {
                 });
         return result;
     }
+
+    public LiveData<Boolean> loginUser(String email, String password) {
+        MutableLiveData<Boolean> loginResult = new MutableLiveData<>();
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        loginResult.setValue(true);
+                    } else {
+                        loginResult.setValue(false);
+                    }
+                });
+        return loginResult;
+    }
 }
