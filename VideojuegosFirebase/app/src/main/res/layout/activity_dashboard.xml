@@ -5,7 +5,7 @@
     android:id="@+id/login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DashboardActivity">
+    tools:context=".views.DashboardActivity">
 
     <Button
         android:id="@+id/btnCierre"
@@ -46,5 +46,12 @@
         android:layout_margin="16dp"
         android:textSize="16sp"
         android:justificationMode="inter_word"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:listitem="@layout/item_videogame" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
