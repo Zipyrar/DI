@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.zipyrar.videojuegosfirebase.R;
 import com.zipyrar.videojuegosfirebase.models.Videogame;
+import com.zipyrar.videojuegosfirebase.views.DetailActivity;
 
 import java.util.List;
 
@@ -36,13 +37,15 @@ public class VideogameAdapter extends RecyclerView.Adapter<VideogameAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Videogame videogame = videogames.get(position);
 
-        holder.titleView.setText(videogame.getTitle());
-        holder.descriptionView.setText(videogame.getDescription());
-        Glide.with(context).load(videogame.getImageUrl()).into(holder.imageView);
+        holder.titleView.setText(videogame.getTitulo());
+        holder.descriptionView.setText(videogame.getDescripcion());
+        Glide.with(context).load(videogame.getImagen()).into(holder.imageView);
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetailActivity.class);
-            intent.putExtra("videojuegos", (CharSequence) videogame);
+            intent.putExtra("titulo", videogame.getTitulo());
+            intent.putExtra("imagen", videogame.getImagen());
+            intent.putExtra("descripcion", videogame.getDescripcion());
             context.startActivity(intent);
         });
     }

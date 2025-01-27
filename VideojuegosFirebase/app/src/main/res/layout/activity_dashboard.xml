@@ -16,41 +16,13 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_margin="16dp" />
 
-    <TextView
-        android:id="@+id/tituloCont"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/btnCierre"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <ImageView
-        android:id="@+id/imagenCont"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tituloCont"
-        android:scaleType="centerCrop"
-        android:layout_margin="16dp" />
-
-    <TextView
-        android:id="@+id/descripcionCont"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imagenCont"
-        android:layout_margin="16dp"
-        android:textSize="16sp"
-        android:justificationMode="inter_word"/>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnCierre"
         android:padding="16dp"
         tools:listitem="@layout/item_videogame" />
 

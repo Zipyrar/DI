@@ -1,27 +1,29 @@
 package com.zipyrar.videojuegosfirebase.models;
 
-public class Videogame {
-    private String title;
-    private String description;
-    private String imageUrl;
+import java.io.Serializable;
+
+public class Videogame implements Serializable{
+    private String titulo;
+    private String descripcion;
+    private String imagen;
 
     public Videogame() {}
 
-    public Videogame(String title, String description, String imageUrl) {
-        this.title = title;
-        this.description = description;
-        this.imageUrl = imageUrl;
+    public Videogame(String titulo, String descripcion, String imagen) {
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.imagen = imagen;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImagen() {
+        return imagen;
     }
 }
