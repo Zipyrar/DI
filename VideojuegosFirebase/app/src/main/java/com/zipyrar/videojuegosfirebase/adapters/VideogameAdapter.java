@@ -46,6 +46,7 @@ public class VideogameAdapter extends RecyclerView.Adapter<VideogameAdapter.View
             intent.putExtra("titulo", videogame.getTitulo());
             intent.putExtra("imagen", videogame.getImagen());
             intent.putExtra("descripcion", videogame.getDescripcion());
+            intent.putExtra("id", videogame.getId());
             context.startActivity(intent);
         });
     }

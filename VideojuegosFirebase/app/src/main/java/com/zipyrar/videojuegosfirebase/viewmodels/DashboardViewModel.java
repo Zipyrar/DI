@@ -28,6 +28,7 @@ public class DashboardViewModel extends ViewModel {
                 List<Videogame> videogameList = new ArrayList<>();
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Videogame videogame = data.getValue(Videogame.class);
+                    videogame.setId(data.getKey());
                     if (videogame != null) {
                         videogameList.add(videogame);
                     }

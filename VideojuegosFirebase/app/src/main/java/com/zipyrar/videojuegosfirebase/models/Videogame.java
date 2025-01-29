@@ -6,6 +6,7 @@ public class Videogame implements Serializable{
     private String titulo;
     private String descripcion;
     private String imagen;
+    private String id;
 
     public Videogame() {}
 
@@ -13,6 +14,14 @@ public class Videogame implements Serializable{
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.imagen = imagen;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getTitulo() {

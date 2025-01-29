@@ -11,7 +11,7 @@ import com.zipyrar.videojuegosfirebase.models.User;
 
 public class UserRepository {
     private FirebaseAuth mAuth;
-    private DatabaseReference databaseRef;
+    public DatabaseReference databaseRef;
 
     public UserRepository() {
         mAuth = FirebaseAuth.getInstance();
@@ -47,5 +47,47 @@ public class UserRepository {
                     }
                 });
         return loginResult;
+    }
+
+    public String getCurrentUserId() {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            return currentUser.getUid();
+        } else {
+            return null;
+        }
+    }
+
+    public LiveData<Boolean> addFavorite(String gameId) {
+        MutableLiveData<Boolean> result = new MutableLiveData<>();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            DatabaseReference favoritesRef = databaseRef.child(userId).child("favoritos");
+
+            favoritesRef.child(gameId).setValue(true)
+                    .addOnSuccessListener(aVoid -> result.setValue(true))
+                    .addOnFailureListener(e -> result.setValue(false));
+        } else {
+            result.setValue(false);
+        }
+        return result;
+    }
+
+    public LiveData<Boolean> removeFavorite(String gameId) {
+        MutableLiveData<Boolean> result = new MutableLiveData<>();
+        String userId = getCurrentUserId();
+
+        if (userId != null) {
+            DatabaseReference favoritesRef = databaseRef.child(userId).child("favoritos");
+
+            favoritesRef.child(gameId).removeValue()
+                    .addOnSuccessListener(aVoid -> result.setValue(true))
+                    .addOnFailureListener(e -> result.setValue(false));
+        } else {
+            result.setValue(false);
+        }
+        return result;
     }
 }
