@@ -7,15 +7,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.zipyrar.videojuegosfirebase.models.Favourite;
 import com.zipyrar.videojuegosfirebase.models.User;
 
 public class UserRepository {
     private FirebaseAuth mAuth;
     public DatabaseReference databaseRef;
+    private String currentUserId;
 
     public UserRepository() {
         mAuth = FirebaseAuth.getInstance();
         databaseRef = FirebaseDatabase.getInstance().getReference("usuarios");
+        currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
     public LiveData<Boolean> registerUser(String email, String password, User user) {
@@ -50,44 +53,51 @@ public class UserRepository {
     }
 
     public String getCurrentUserId() {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            return currentUser.getUid();
-        } else {
-            return null;
-        }
+        return currentUserId;
     }
 
-    public LiveData<Boolean> addFavorite(String gameId) {
-        MutableLiveData<Boolean> result = new MutableLiveData<>();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+    public LiveData<Boolean> addFavorite(String videogameNumber, Favourite favourite) {
 
-        if (currentUser != null) {
-            String userId = currentUser.getUid();
-            DatabaseReference favoritesRef = databaseRef.child(userId).child("favoritos");
+        MutableLiveData<Boolean> successLiveData = new MutableLiveData<>();
 
-            favoritesRef.child(gameId).setValue(true)
-                    .addOnSuccessListener(aVoid -> result.setValue(true))
-                    .addOnFailureListener(e -> result.setValue(false));
+        if (currentUserId != null) {
+            databaseRef.child(currentUserId)
+                    .child("favoritos")
+                    .child(videogameNumber)
+                    .setValue(favourite)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            successLiveData.setValue(true);
+                        } else {
+                            successLiveData.setValue(false);
+                        }
+                    });
         } else {
-            result.setValue(false);
+            successLiveData.setValue(false);
         }
-        return result;
+
+        return successLiveData;
     }
 
-    public LiveData<Boolean> removeFavorite(String gameId) {
-        MutableLiveData<Boolean> result = new MutableLiveData<>();
-        String userId = getCurrentUserId();
+    public LiveData<Boolean> removeFavorite(String videogameNumber) {
+        MutableLiveData<Boolean> successLiveData = new MutableLiveData<>();
 
-        if (userId != null) {
-            DatabaseReference favoritesRef = databaseRef.child(userId).child("favoritos");
-
-            favoritesRef.child(gameId).removeValue()
-                    .addOnSuccessListener(aVoid -> result.setValue(true))
-                    .addOnFailureListener(e -> result.setValue(false));
+        if (currentUserId != null) {
+            databaseRef.child(currentUserId)
+                    .child("favoritos")
+                    .child(videogameNumber)
+                    .removeValue()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            successLiveData.setValue(true);
+                        } else {
+                            successLiveData.setValue(false);
+                        }
+                    });
         } else {
-            result.setValue(false);
+            successLiveData.setValue(false);
         }
-        return result;
+
+        return successLiveData;
     }
 }

@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-01-27T10:49:44.220687900Z">
+        <DropdownSelection timestamp="2025-02-01T10:36:22.158099500Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\skype\.android\avd\Pixel_6_API_28.avd" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\skype\.android\avd\Nexus_S_API_28_3.avd" />
             </handle>
           </Target>
         </DropdownSelection>

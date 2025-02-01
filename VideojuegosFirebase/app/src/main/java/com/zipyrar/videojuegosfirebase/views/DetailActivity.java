@@ -14,13 +14,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.zipyrar.videojuegosfirebase.R;
+import com.zipyrar.videojuegosfirebase.models.Favourite;
 import com.zipyrar.videojuegosfirebase.models.Videogame;
 import com.zipyrar.videojuegosfirebase.repositories.UserRepository;
 
 public class DetailActivity extends AppCompatActivity {
     private DatabaseReference userFavoritesRef;
     private UserRepository userRepository;
-    private boolean isFavorite = false;
+    private boolean isFavourite = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +53,10 @@ public class DetailActivity extends AppCompatActivity {
                     .get()
                     .addOnSuccessListener(snapshot -> {
                         if (snapshot.exists()) {
-                            isFavorite = true;
+                            isFavourite = true;
                             btnFavorite.setImageResource(R.drawable.star_favorite);
                         } else {
-                            isFavorite = false;
+                            isFavourite = false;
                             btnFavorite.setImageResource(R.drawable.star_no_favorite);
                         }
                     })
@@ -67,10 +68,10 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         btnFavorite.setOnClickListener(view -> {
-            if (isFavorite) {
+            if (isFavourite) {
                 userRepository.removeFavorite(videogameNumber).observe(this, success -> {
                     if (success) {
-                        isFavorite = false;
+                        isFavourite = false;
                         btnFavorite.setImageResource(R.drawable.star_no_favorite);
                         Toast.makeText(DetailActivity.this, "Eliminado de favoritos", Toast.LENGTH_SHORT).show();
                     } else {
@@ -78,9 +79,10 @@ public class DetailActivity extends AppCompatActivity {
                     }
                 });
             } else {
-                userRepository.addFavorite(videogameNumber).observe(this, success -> {
+                Favourite favourite = new Favourite(title, description, imageUrl);
+                userRepository.addFavorite(videogameNumber, favourite).observe(this, success -> {
                     if (success) {
-                        isFavorite = true;
+                        isFavourite = true;
                         btnFavorite.setImageResource(R.drawable.star_favorite);
                         Toast.makeText(DetailActivity.this, "Añadido a favoritos", Toast.LENGTH_SHORT).show();
                     } else {
