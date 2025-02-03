@@ -17,8 +17,9 @@ public class UserRepository {
 
     public UserRepository() {
         mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
         databaseRef = FirebaseDatabase.getInstance().getReference("usuarios");
-        currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        currentUserId = (user != null) ? user.getUid() : null;
     }
 
     public LiveData<Boolean> registerUser(String email, String password, User user) {
@@ -53,7 +54,8 @@ public class UserRepository {
     }
 
     public String getCurrentUserId() {
-        return currentUserId;
+        FirebaseUser user = mAuth.getCurrentUser();
+        return currentUserId = (user != null) ? user.getUid() : null;
     }
 
     public LiveData<Boolean> addFavorite(String videogameNumber, Favourite favourite) {

@@ -14,7 +14,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tituloItem"
         android:scaleType="centerCrop"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp"
+        android:contentDescription="Esta es la imagen del videojuego"/>
 
     <TextView
         android:id="@+id/tituloItem"
@@ -23,6 +24,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold"  />
 
@@ -33,6 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imagenItem"
+        android:textColor="#FFFFFF"
         android:layout_margin="16dp"
         android:textSize="16sp"
         android:justificationMode="inter_word" />
