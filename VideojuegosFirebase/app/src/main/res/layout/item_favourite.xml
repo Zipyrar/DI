@@ -15,7 +15,7 @@
         app:layout_constraintTop_toBottomOf="@id/tituloItem"
         android:scaleType="centerCrop"
         android:layout_margin="16dp"
-        android:contentDescription="Esta es la imagen del videojuego"/>
+        android:contentDescription="Esta es la imagen del videojuego."/>
 
     <TextView
         android:id="@+id/tituloItem"
@@ -37,4 +37,4 @@
         android:layout_margin="16dp"
         android:textSize="16sp"
         android:justificationMode="inter_word" />
-    </LinearLayout>
+</LinearLayout>

@@ -1,4 +1,5 @@
 package com.zipyrar.videojuegosfirebase.adapters;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -12,48 +13,56 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.zipyrar.videojuegosfirebase.R;
-import com.zipyrar.videojuegosfirebase.models.Videogame;
+import com.zipyrar.videojuegosfirebase.models.Favourite;
 import com.zipyrar.videojuegosfirebase.views.DetailActivity;
 
 import java.util.List;
 
-public class VideogameAdapter extends RecyclerView.Adapter<VideogameAdapter.ViewHolder> {
-    private List<Videogame> videogames;
+public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.ViewHolder> {
+    private List<Favourite> favourites;
     private Context context;
 
-    public VideogameAdapter(Context context, List<Videogame> videogames) {
+    // Cambié el constructor para aceptar el contexto
+    public FavouritesAdapter(Context context, List<Favourite> favourites) {
         this.context = context;
-        this.videogames = videogames;
+        this.favourites = favourites;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public FavouritesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Usa el contexto para inflar la vista
         View view = LayoutInflater.from(context).inflate(R.layout.item_videogame, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Videogame videogame = videogames.get(position);
+    public void onBindViewHolder(@NonNull FavouritesAdapter.ViewHolder holder, int position) {
+        Favourite favourite = favourites.get(position);
 
-        holder.titleView.setText(videogame.getTitulo());
-        holder.descriptionView.setText(videogame.getDescripcion());
-        Glide.with(context).load(videogame.getImagen()).into(holder.imageView);
+        holder.titleView.setText(favourite.getTitulo());
+        holder.descriptionView.setText(favourite.getDescripcion());
+        Glide.with(context).load(favourite.getImagen()).into(holder.imageView);
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetailActivity.class);
-            intent.putExtra("titulo", videogame.getTitulo());
-            intent.putExtra("imagen", videogame.getImagen());
-            intent.putExtra("descripcion", videogame.getDescripcion());
-            intent.putExtra("id", videogame.getId());
+            intent.putExtra("titulo", favourite.getTitulo());
+            intent.putExtra("imagen", favourite.getImagen());
+            intent.putExtra("descripcion", favourite.getDescripcion());
+            intent.putExtra("id", favourite.getId());
             context.startActivity(intent);
         });
     }
 
     @Override
     public int getItemCount() {
-        return videogames.size();
+        return favourites.size();
+    }
+
+    public void updateData(List<Favourite> newFavourites) {
+        this.favourites.clear();
+        this.favourites.addAll(newFavourites);
+        notifyDataSetChanged();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

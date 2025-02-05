@@ -1,12 +1,16 @@
 package com.zipyrar.videojuegosfirebase.views;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +26,7 @@ public class DashboardActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DashboardViewModel viewModel;
     private VideogameAdapter adapter;
+    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,8 @@ public class DashboardActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         Button logoutButton = findViewById(R.id.btnCierre);
+        Button favouritesButton = findViewById(R.id.btnFavourites);
+        Button ThemeButton = findViewById(R.id.btnThemeMode);
 
         adapter = new VideogameAdapter(this, List.of());
         recyclerView.setAdapter(adapter);
@@ -53,6 +60,27 @@ public class DashboardActivity extends AppCompatActivity {
             Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
+        });
+
+        favouritesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashboardActivity.this, FavouritesActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        sharedPref = getSharedPreferences("AppConfig", Context.MODE_PRIVATE);
+        boolean darkMode = sharedPref.getBoolean("darkMode", false);
+        AppCompatDelegate.setDefaultNightMode(darkMode ?
+                AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
+
+        ThemeButton.setOnClickListener(view -> {
+            boolean isDarkMode = sharedPref.getBoolean("darkMode", false);
+            sharedPref.edit().putBoolean("darkMode", !isDarkMode).apply();
+
+            AppCompatDelegate.setDefaultNightMode(isDarkMode ?
+                    AppCompatDelegate.MODE_NIGHT_NO : AppCompatDelegate.MODE_NIGHT_YES);
         });
     }
 }

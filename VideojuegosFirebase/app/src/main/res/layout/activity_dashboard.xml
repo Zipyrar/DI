@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".views.DashboardActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@id/btnThemeMode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnCierre"
+        tools:listitem="@layout/item_videogame" />
+
     <Button
         android:id="@+id/btnCierre"
         android:layout_width="wrap_content"
@@ -14,16 +25,24 @@
         android:text="Cerrar sesión"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_margin="16dp" />
+        android:layout_margin="16dp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnFavourites"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Ver Favoritos"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="16dp"/>
+
+    <Button
+        android:id="@+id/btnThemeMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Modo oscuro/claro"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnCierre"
-        android:padding="16dp"
-        tools:listitem="@layout/item_videogame" />
+        android:layout_margin="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
