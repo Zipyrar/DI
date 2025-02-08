@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.zipyrar.videojuegosfirebase.R;
 import com.zipyrar.videojuegosfirebase.models.Videogame;
-import com.zipyrar.videojuegosfirebase.views.DetailActivity;
 
 import java.util.List;
 

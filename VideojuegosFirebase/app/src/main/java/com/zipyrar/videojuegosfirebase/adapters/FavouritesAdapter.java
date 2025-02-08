@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.zipyrar.videojuegosfirebase.R;
 import com.zipyrar.videojuegosfirebase.models.Favourite;
-import com.zipyrar.videojuegosfirebase.views.DetailActivity;
+import com.zipyrar.videojuegosfirebase.views.DetailFragment;
 
 import java.util.List;
 
@@ -45,7 +45,7 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Vi
         Glide.with(context).load(favourite.getImagen()).into(holder.imageView);
 
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, DetailActivity.class);
+            Intent intent = new Intent(context, DetailFragment.class);
             intent.putExtra("titulo", favourite.getTitulo());
             intent.putExtra("imagen", favourite.getImagen());
             intent.putExtra("descripcion", favourite.getDescripcion());
