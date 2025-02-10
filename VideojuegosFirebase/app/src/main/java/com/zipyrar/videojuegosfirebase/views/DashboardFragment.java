@@ -66,7 +66,7 @@ public class DashboardFragment extends Fragment {
         });
 
         favouritesButton.setOnClickListener(v -> {
-            Intent intent = new Intent(requireActivity(), FavouritesActivity.class);
+            Intent intent = new Intent(requireActivity(), FavouritesFragment.class);
             startActivity(intent);
         });
 
