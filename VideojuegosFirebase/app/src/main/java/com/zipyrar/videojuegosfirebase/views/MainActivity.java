@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -15,7 +14,7 @@ import com.zipyrar.videojuegosfirebase.databinding.ActivityMainBinding;
 
 
 public class MainActivity extends AppCompatActivity {
-    private ViewDataBinding binding;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +22,14 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         binding.navigationView.setNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.nav_dashboard: openFragment(new DashboardFragment()); break;
-                case R.id.nav_favourites: openFragment(new FavouritesFragment()); break;
-                case R.id.nav_profile: openFragment(new ProfileFragment()); break;
-                case R.id.nav_logout: logoutUser(); break;
+            if(item.getItemId()==R.id.nav_dashboard) {
+                openFragment(new DashboardFragment());
+            } else if(item.getItemId()==R.id.nav_favourites) {
+                openFragment(new FavouritesFragment());
+            } else if(item.getItemId()==R.id.nav_profile) {
+                openFragment(new ProfileFragment());
+            } else if(item.getItemId()==R.id.nav_logout) {
+                logoutUser();
             }
             binding.drawerLayout.closeDrawers();
             return true;
