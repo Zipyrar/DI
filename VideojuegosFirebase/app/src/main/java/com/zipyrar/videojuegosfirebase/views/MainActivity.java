@@ -20,23 +20,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         binding.navigationView.setNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
-                case R.id.nav_dashboard:
-                    openFragment(new DashboardFragment());
-                    break;
-                case R.id.nav_favourites:
-                    openFragment(new FavouritesFragment());
-                    break;
-                case R.id.nav_profile:
-                    openFragment(new ProfileFragment());
-                    break;
-                case R.id.nav_logout:
-                    logoutUser();
-                    break;
+                case R.id.nav_dashboard: openFragment(new DashboardFragment()); break;
+                case R.id.nav_favourites: openFragment(new FavouritesFragment()); break;
+                case R.id.nav_profile: openFragment(new ProfileFragment()); break;
+                case R.id.nav_logout: logoutUser(); break;
             }
             binding.drawerLayout.closeDrawers();
             return true;
@@ -48,8 +39,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openFragment(Fragment fragment) {
-        getSupportFragmentManager()
-                .beginTransaction()
+        getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragmentContainer, fragment)
                 .commit();
     }

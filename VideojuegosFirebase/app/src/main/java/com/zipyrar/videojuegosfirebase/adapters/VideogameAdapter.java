@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.zipyrar.videojuegosfirebase.R;
 import com.zipyrar.videojuegosfirebase.models.Videogame;
+import com.zipyrar.videojuegosfirebase.views.DetailFragment;
 
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class VideogameAdapter extends RecyclerView.Adapter<VideogameAdapter.View
         Glide.with(context).load(videogame.getImagen()).into(holder.imageView);
 
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, DetailActivity.class);
+            Intent intent = new Intent(context, DetailFragment.class);
             intent.putExtra("titulo", videogame.getTitulo());
             intent.putExtra("imagen", videogame.getImagen());
             intent.putExtra("descripcion", videogame.getDescripcion());
