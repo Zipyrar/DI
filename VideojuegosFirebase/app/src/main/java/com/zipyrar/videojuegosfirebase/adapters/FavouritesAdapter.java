@@ -2,6 +2,7 @@ package com.zipyrar.videojuegosfirebase.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.zipyrar.videojuegosfirebase.R;
 import com.zipyrar.videojuegosfirebase.models.Favourite;
-import com.zipyrar.videojuegosfirebase.views.DetailActivity;
+import com.zipyrar.videojuegosfirebase.views.DetailFragment;
 
 import java.util.List;
 
@@ -45,12 +46,26 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.Vi
         Glide.with(context).load(favourite.getImagen()).into(holder.imageView);
 
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, DetailActivity.class);
-            intent.putExtra("titulo", favourite.getTitulo());
-            intent.putExtra("imagen", favourite.getImagen());
-            intent.putExtra("descripcion", favourite.getDescripcion());
-            intent.putExtra("id", favourite.getId());
-            context.startActivity(intent);
+            DetailFragment detailFragment = new DetailFragment();
+
+            Bundle bundle = new Bundle();
+            bundle.putString("titulo", favourite.getTitulo());
+            bundle.putString("imagen", favourite.getImagen());
+            bundle.putString("descripcion", favourite.getDescripcion());
+            bundle.putString("id", favourite.getId());
+
+            detailFragment.setArguments(bundle);
+
+
+            if (context instanceof androidx.fragment.app.FragmentActivity) {
+                androidx.fragment.app.FragmentActivity activity = (androidx.fragment.app.FragmentActivity) context;
+
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainer, detailFragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
         });
     }
 

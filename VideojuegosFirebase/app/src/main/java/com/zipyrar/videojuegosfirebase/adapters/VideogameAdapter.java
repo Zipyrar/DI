@@ -1,6 +1,7 @@
 package com.zipyrar.videojuegosfirebase.adapters;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.zipyrar.videojuegosfirebase.R;
 import com.zipyrar.videojuegosfirebase.models.Videogame;
-import com.zipyrar.videojuegosfirebase.views.DetailActivity;
+import com.zipyrar.videojuegosfirebase.views.DetailFragment;
 
 import java.util.List;
 
@@ -42,12 +43,26 @@ public class VideogameAdapter extends RecyclerView.Adapter<VideogameAdapter.View
         Glide.with(context).load(videogame.getImagen()).into(holder.imageView);
 
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, DetailActivity.class);
-            intent.putExtra("titulo", videogame.getTitulo());
-            intent.putExtra("imagen", videogame.getImagen());
-            intent.putExtra("descripcion", videogame.getDescripcion());
-            intent.putExtra("id", videogame.getId());
-            context.startActivity(intent);
+            DetailFragment detailFragment = new DetailFragment();
+
+            Bundle bundle = new Bundle();
+            bundle.putString("titulo", videogame.getTitulo());
+            bundle.putString("imagen", videogame.getImagen());
+            bundle.putString("descripcion", videogame.getDescripcion());
+            bundle.putString("id", videogame.getId());
+
+            detailFragment.setArguments(bundle);
+
+
+            if (context instanceof androidx.fragment.app.FragmentActivity) {
+                androidx.fragment.app.FragmentActivity activity = (androidx.fragment.app.FragmentActivity) context;
+
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentContainer, detailFragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
         });
     }
 
