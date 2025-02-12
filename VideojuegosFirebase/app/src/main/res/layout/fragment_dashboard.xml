@@ -6,18 +6,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".views.DashboardFragment">
 
+    <!--app:layout_constraintBottom_toTopOf="@id/btnThemeMode"-->
+    <!--app:layout_constraintTop_toBottomOf="@id/btnCierre"-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        app:layout_constraintBottom_toTopOf="@id/btnThemeMode"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnCierre"
         tools:listitem="@layout/item_videogame" />
 
-    <Button
+    <!--<Button
         android:id="@+id/btnCierre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,6 +44,6 @@
         android:text="Modo oscuro/claro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

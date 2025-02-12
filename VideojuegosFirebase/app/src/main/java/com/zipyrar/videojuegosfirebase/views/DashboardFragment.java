@@ -21,7 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.zipyrar.videojuegosfirebase.R;
 import com.zipyrar.videojuegosfirebase.adapters.VideogameAdapter;
+import com.zipyrar.videojuegosfirebase.models.Videogame;
 import com.zipyrar.videojuegosfirebase.viewmodels.DashboardViewModel;
+import com.zipyrar.videojuegosfirebase.views.DetailFragment;
 
 import java.util.List;
 
@@ -40,9 +42,9 @@ public class DashboardFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        Button logoutButton = view.findViewById(R.id.btnCierre);
+        /*Button logoutButton = view.findViewById(R.id.btnCierre);
         Button favouritesButton = view.findViewById(R.id.btnFavourites);
-        Button themeButton = view.findViewById(R.id.btnThemeMode);
+        Button themeButton = view.findViewById(R.id.btnThemeMode);*/
 
         adapter = new VideogameAdapter(requireContext(), List.of());
         recyclerView.setAdapter(adapter);
@@ -57,7 +59,7 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        logoutButton.setOnClickListener(v -> {
+        /*logoutButton.setOnClickListener(v -> {
             mAuth.signOut();
             Toast.makeText(requireContext(), "Cerraste sesión", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(requireActivity(), LoginActivity.class);
@@ -66,16 +68,19 @@ public class DashboardFragment extends Fragment {
         });
 
         favouritesButton.setOnClickListener(v -> {
-            Intent intent = new Intent(requireActivity(), FavouritesFragment.class);
-            startActivity(intent);
-        });
+            FavouritesFragment favouritesFragment = new FavouritesFragment();
+            requireActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContainer, favouritesFragment)
+                    .addToBackStack(null)
+                    .commit();
+        });*/
 
         sharedPref = requireContext().getSharedPreferences("AppConfig", Context.MODE_PRIVATE);
         boolean darkMode = sharedPref.getBoolean("darkMode", false);
         AppCompatDelegate.setDefaultNightMode(darkMode ?
                 AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
 
-        themeButton.setOnClickListener(v -> {
+        /*themeButton.setOnClickListener(v -> {
             boolean isDarkMode = sharedPref.getBoolean("darkMode", false);
             sharedPref.edit().putBoolean("darkMode", !isDarkMode).apply();
 
@@ -83,7 +88,7 @@ public class DashboardFragment extends Fragment {
                     AppCompatDelegate.MODE_NIGHT_NO : AppCompatDelegate.MODE_NIGHT_YES);
 
             requireActivity().recreate();
-        });
+        });*/
 
         return view;
     }
